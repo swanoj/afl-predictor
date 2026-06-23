@@ -346,3 +346,159 @@ export async function runWhatIf(
   if (!res.ok) throw new Error("What-if simulation failed");
   return res.json();
 }
+
+/** Team branding metadata from the API. */
+export interface TeamMeta {
+  name: string;
+  primary: string;
+  secondary: string;
+  abbreviation?: string;
+  nickname: string;
+}
+
+/** One row on the AFL ladder (GET /ladder). */
+export interface LadderRow {
+  team: string;
+  meta: TeamMeta;
+  position: number;
+  wins: number;
+  losses: number;
+  draws: number;
+  played: number;
+  points_for: number;
+  points_against: number;
+  ladder_points: number;
+  percentage: number;
+  streak: string;
+}
+
+export interface LadderResponse {
+  year: number;
+  ladder: LadderRow[];
+}
+
+export interface SquadPlayer {
+  player_name: string;
+  team: string;
+  value: number;
+  raw_value: number;
+  games_sample: number;
+}
+
+export interface TeamSeasonSummary {
+  team: string;
+  meta: TeamMeta;
+  year: number;
+  before_round: number | null;
+  wins: number;
+  losses: number;
+  draws: number;
+  played: number;
+  points_for: number;
+  points_against: number;
+  ladder_points: number;
+  percentage: number;
+  streak: string;
+  ladder_position: number | null;
+}
+
+export interface TeamFormResult {
+  opponent: string;
+  venue: string | null;
+  result: "W" | "L" | "D";
+  score_for: number;
+  score_against: number;
+  margin: number;
+}
+
+/** GET /teams/{team_name}/profile */
+export interface TeamProfile {
+  team: string;
+  meta: TeamMeta;
+  year: number;
+  round: number | null;
+  season: TeamSeasonSummary;
+  squad: SquadPlayer[];
+  all_teams: string[];
+}
+
+export interface TeamLineupSide {
+  team: string;
+  expected_lineup: string[];
+  out_players: string[];
+  roster_pool_size: number;
+  lineup_value: number;
+  baseline_lineup_value: number | null;
+}
+
+export interface MatchLineups {
+  match_id: number;
+  year: number;
+  round: number;
+  home: TeamLineupSide;
+  away: TeamLineupSide;
+  values_loaded: number;
+}
+
+export interface TeamCentreSummary {
+  meta: TeamMeta;
+  season: TeamSeasonSummary;
+  form: TeamFormResult[];
+  ladder_position: number | null;
+  top_squad: SquadPlayer[];
+}
+
+/** Full broadcast match-centre payload (GET /match/{id}/centre). */
+export interface MatchCentre {
+  match_id: number;
+  fixture: {
+    year: number;
+    round: number;
+    date: string | null;
+    venue: string | null;
+    home_team: string;
+    away_team: string;
+    home_score: number | null;
+    away_score: number | null;
+    complete: boolean;
+  };
+  prediction: RoundPrediction | null;
+  lineups: MatchLineups;
+  injuries: InjuryUpdate[];
+  player_projections: {
+    home: Record<string, PlayerProjection>;
+    away: Record<string, PlayerProjection>;
+  } | null;
+  home: TeamCentreSummary;
+  away: TeamCentreSummary;
+  ladder: LadderRow[];
+  conformal: ConformalInterval | null;
+  market_edge: MarketEdge | null;
+}
+
+export async function fetchLadder(year: number): Promise<LadderResponse> {
+  const params = new URLSearchParams({ year: String(year) });
+  const res = await fetch(`${API_BASE}/ladder?${params}`);
+  if (!res.ok) throw new Error("Failed to fetch ladder");
+  return res.json();
+}
+
+export async function fetchTeamProfile(
+  teamName: string,
+  year: number,
+  round?: number
+): Promise<TeamProfile> {
+  const params = new URLSearchParams({ year: String(year) });
+  if (round != null) params.set("round", String(round));
+  const res = await fetch(
+    `${API_BASE}/teams/${encodeURIComponent(teamName)}/profile?${params}`
+  );
+  if (!res.ok) throw new Error("Failed to fetch team profile");
+  return res.json();
+}
+
+export async function fetchMatchCentre(matchId: number): Promise<MatchCentre> {
+  const res = await fetch(`${API_BASE}/match/${matchId}/centre`);
+  if (!res.ok) throw new Error("Failed to fetch match centre");
+  return res.json();
+}

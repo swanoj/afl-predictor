@@ -23,8 +23,16 @@ from src.db.session import SessionLocal, init_db
 # precomputed (StoredPrediction rows + detail_json), so the request hot paths
 # never import the modelling stack at all.
 from src.intelligence.market import get_market_edge, get_round_market_edges
+from src.intelligence.match_centre import get_match_centre
 from src.intelligence.service import get_match_intelligence, get_round_intelligence
 from src.intelligence.similar_games import find_similar_games
+from src.intelligence.teams import (
+    TEAM_META,
+    compute_ladder,
+    team_meta,
+    team_season_summary,
+    team_squad,
+)
 from src.predict.conformal import get_conformal_interval
 from src.predict.enriched import enrich_prediction_item, run_whatif
 from src.predict.serialize import stored_to_item, upsert_stored_prediction
@@ -243,6 +251,52 @@ def intelligence_similar_games(match_id: int) -> dict[str, Any]:
         session.close()
 
 
+@app.get("/ladder")
+def ladder(year: int = 2026) -> dict[str, Any]:
+    """AFL ladder for a season (wins, percentage, streak)."""
+    session = SessionLocal()
+    try:
+        rows = compute_ladder(session, year)
+        return {"year": year, "ladder": rows}
+    finally:
+        session.close()
+
+
+@app.get("/teams/{team_name}/profile")
+def team_profile(
+    team_name: str,
+    year: int = 2026,
+    round: int | None = None,
+) -> dict[str, Any]:
+    """Team branding, season summary, form, and top squad."""
+    session = SessionLocal()
+    try:
+        return {
+            "team": team_name,
+            "meta": team_meta(team_name),
+            "year": year,
+            "round": round,
+            "season": team_season_summary(session, team_name, year, round),
+            "squad": team_squad(session, team_name, year),
+            "all_teams": sorted(TEAM_META.keys()),
+        }
+    finally:
+        session.close()
+
+
+@app.get("/match/{match_id}/centre")
+def match_centre(match_id: int) -> dict[str, Any]:
+    """Broadcast-style match centre: fixture, prediction, lineups, team context."""
+    session = SessionLocal()
+    try:
+        try:
+            return get_match_centre(session, match_id)
+        except ValueError as exc:
+            raise HTTPException(404, str(exc)) from exc
+    finally:
+        session.close()
+
+
 @app.get("/predict/{match_id}/interval")
 def predict_interval(match_id: int) -> dict[str, Any]:
     """90% conformal interval for home win probability."""
@@ -434,6 +488,9 @@ _API_PREFIXES = {
     "predictions",
     "intelligence",
     "simulate",
+    "ladder",
+    "teams",
+    "match",
     "docs",
     "redoc",
     "openapi.json",

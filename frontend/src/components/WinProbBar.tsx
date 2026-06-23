@@ -12,12 +12,16 @@ export function WinProbBar({
   interval,
   showLabels = false,
   compact = false,
+  homeColor,
+  awayColor,
 }: {
   homeProb: number;
   awayProb: number;
   interval?: WinProbInterval | null;
   showLabels?: boolean;
   compact?: boolean;
+  homeColor?: string;
+  awayColor?: string;
 }) {
   const homeLabel = interval
     ? `${interval.lower.toFixed(0)}–${interval.upper.toFixed(0)}%`
@@ -44,10 +48,26 @@ export function WinProbBar({
         />
       )}
       <div className="win-bar">
-        <div className="win-bar-home" style={{ width: `${homeProb}%` }}>
+        <div
+          className="win-bar-home"
+          style={{
+            width: `${homeProb}%`,
+            background: homeColor
+              ? `linear-gradient(90deg, ${homeColor}, ${homeColor}cc)`
+              : undefined,
+          }}
+        >
           {showLabels || interval ? homeLabel : null}
         </div>
-        <div className="win-bar-away" style={{ width: `${awayProb}%` }}>
+        <div
+          className="win-bar-away"
+          style={{
+            width: `${awayProb}%`,
+            background: awayColor
+              ? `linear-gradient(90deg, ${awayColor}cc, ${awayColor})`
+              : undefined,
+          }}
+        >
           {showLabels ? awayLabel : null}
         </div>
       </div>

@@ -1,23 +1,27 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   fetchConformalInterval,
+  fetchLadder,
   fetchRound,
   fetchRoundIntelligence,
   fetchRoundMarketEdges,
   type ConformalInterval,
+  type LadderRow,
   type MarketEdge,
   type RoundIntelligence,
   type RoundPrediction,
 } from "./api";
-import { MatchDetail } from "./components/MatchDetail";
+import { actualWinner, MatchCard } from "./components/MatchCard";
+import { LadderPanel } from "./components/LadderPanel";
+import { MatchCentre } from "./components/MatchCentre";
 import { NewsFeed } from "./components/NewsFeed";
 import { NewsSkeleton, TipBoardSkeleton } from "./components/Skeleton";
-import { TipCard, actualWinner } from "./components/TipCard";
 
 export default function App() {
   const [year, setYear] = useState(2026);
   const [round, setRound] = useState(16);
   const [predictions, setPredictions] = useState<RoundPrediction[]>([]);
+  const [ladder, setLadder] = useState<LadderRow[]>([]);
   const [intel, setIntel] = useState<RoundIntelligence | null>(null);
   const [marketEdges, setMarketEdges] = useState<Map<number, MarketEdge>>(new Map());
   const [intervals, setIntervals] = useState<Map<number, ConformalInterval>>(new Map());
@@ -31,13 +35,15 @@ export default function App() {
     setIntelLoading(true);
     setError(null);
     try {
-      const [data, roundIntel, roundMarket] = await Promise.all([
+      const [data, roundIntel, roundMarket, ladderData] = await Promise.all([
         fetchRound(year, round),
         fetchRoundIntelligence(year, round),
         fetchRoundMarketEdges(year, round).catch(() => null),
+        fetchLadder(year).catch(() => ({ year, ladder: [] as LadderRow[] })),
       ]);
       setPredictions(data.predictions);
       setIntel(roundIntel);
+      setLadder(ladderData.ladder);
 
       if (roundMarket) {
         setMarketEdges(new Map(roundMarket.edges.map((e) => [e.match_id, e])));
@@ -64,6 +70,7 @@ export default function App() {
       setError("Could not load predictions. Is the API running?");
       setPredictions([]);
       setIntel(null);
+      setLadder([]);
       setMarketEdges(new Map());
       setIntervals(new Map());
     } finally {
@@ -89,18 +96,24 @@ export default function App() {
 
   return (
     <div className="app">
-      <header className="hero">
+      <header className="hero hero-cinematic">
+        <div className="hero-cinematic-bg" />
         <div className="hero-text">
-          <p className="eyebrow">Live intelligence · Model + news</p>
+          <p className="eyebrow">Broadcast intelligence · Live wire</p>
           <h1>AFL God-Tier Predictor</h1>
           <p>
-            Calibrated win probabilities, live AFL headlines, injury wire, and
-            AI match briefings — all in one board.
+            Broadcast-style match centre with calibrated probabilities, ladder
+            context, lineups, player projections, and live AFL headlines.
           </p>
         </div>
         <div className="hero-badges">
           <span className="live-pill">AFL Wire live</span>
           <span className="model-pill">Logistic + Ridge + MC</span>
+          {completed.length > 0 && (
+            <span className="record-pill hero-record">
+              Tips: {correct}/{completed.length}
+            </span>
+          )}
         </div>
       </header>
 
@@ -122,11 +135,6 @@ export default function App() {
         <button onClick={loadRound} disabled={loading}>
           {loading ? "Refreshing…" : "Refresh"}
         </button>
-        {completed.length > 0 && (
-          <span className="record-pill">
-            Tips: {correct}/{completed.length} correct
-          </span>
-        )}
       </div>
 
       {error && <div className="error">{error}</div>}
@@ -138,9 +146,9 @@ export default function App() {
           ) : predictions.length === 0 ? (
             <div className="empty-note">No games found for this round.</div>
           ) : (
-            <div className="tip-board">
+            <div className="tip-board broadcast-board">
               {predictions.map((p) => (
-                <TipCard
+                <MatchCard
                   key={p.match_id}
                   p={p}
                   injuryCount={injuryByMatch.get(p.match_id) ?? 0}
@@ -153,41 +161,49 @@ export default function App() {
           )}
         </main>
 
-        <aside className="layout-sidebar panel">
-          <div className="sidebar-header">
-            <h2>AFL Wire</h2>
-            <p>Headlines & injuries for this round</p>
-          </div>
-          {intelLoading ? (
-            <NewsSkeleton />
-          ) : (
-            <>
-              {intel && intel.injuries.length > 0 && (
-                <div className="sidebar-section">
-                  <h3>Injury updates</h3>
-                  <div className="injury-chips">
-                    {intel.injuries.slice(0, 6).map((item, idx) => (
-                      <a
-                        key={`${item.player}-${idx}`}
-                        className={`injury-chip status-${item.status}`}
-                        href={item.url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <strong>{item.player}</strong>
-                        <span>{item.team}</span>
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              )}
-              <NewsFeed
-                articles={intel?.news ?? []}
-                compact
-                emptyMessage="Pulling AFL.com.au headlines…"
-              />
-            </>
+        <aside className="layout-sidebar">
+          {ladder.length > 0 && (
+            <div className="sidebar-ladder panel">
+              <LadderPanel ladder={ladder} />
+            </div>
           )}
+
+          <div className="panel sidebar-news">
+            <div className="sidebar-header">
+              <h2>AFL Wire</h2>
+              <p>Headlines & injuries for this round</p>
+            </div>
+            {intelLoading ? (
+              <NewsSkeleton />
+            ) : (
+              <>
+                {intel && intel.injuries.length > 0 && (
+                  <div className="sidebar-section">
+                    <h3>Injury updates</h3>
+                    <div className="injury-chips">
+                      {intel.injuries.slice(0, 6).map((item, idx) => (
+                        <a
+                          key={`${item.player}-${idx}`}
+                          className={`injury-chip status-${item.status}`}
+                          href={item.url}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <strong>{item.player}</strong>
+                          <span>{item.team}</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                <NewsFeed
+                  articles={intel?.news ?? []}
+                  compact
+                  emptyMessage="Pulling AFL.com.au headlines…"
+                />
+              </>
+            )}
+          </div>
         </aside>
       </div>
 
@@ -197,7 +213,7 @@ export default function App() {
         model-driven. Set OPENAI_API_KEY for GPT briefings.
       </footer>
 
-      {pick && <MatchDetail pick={pick} onClose={() => setPick(null)} />}
+      {pick && <MatchCentre pick={pick} onClose={() => setPick(null)} />}
     </div>
   );
 }

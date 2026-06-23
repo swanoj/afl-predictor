@@ -12,9 +12,49 @@ import feedparser
 import requests
 
 from src.config import SQUIGGLE_USER_AGENT
-from src.ingest.narrative import TEAM_KEYWORDS, _score_text
 
 logger = logging.getLogger(__name__)
+
+POSITIVE_WORDS = {
+    "confident", "dominant", "strong", "return", "fit", "boost", "win", "star",
+    "excellent", "momentum", "unstoppable", "premiership", "form",
+}
+NEGATIVE_WORDS = {
+    "injury", "doubt", "crisis", "slump", "pressure", "sack", "loss", "concern",
+    "struggle", "out", "suspended", "miss", "disappointing", "woeful",
+}
+
+TEAM_KEYWORDS: dict[str, list[str]] = {
+    "Adelaide": ["Adelaide", "Crows"],
+    "Brisbane Lions": ["Brisbane", "Lions"],
+    "Carlton": ["Carlton", "Blues"],
+    "Collingwood": ["Collingwood", "Magpies"],
+    "Essendon": ["Essendon", "Bombers"],
+    "Fremantle": ["Fremantle", "Dockers"],
+    "Geelong": ["Geelong", "Cats"],
+    "Gold Coast": ["Gold Coast", "Suns"],
+    "GWS": ["GWS", "Giants"],
+    "Hawthorn": ["Hawthorn", "Hawks"],
+    "Melbourne": ["Melbourne", "Demons"],
+    "North Melbourne": ["North Melbourne", "Kangaroos"],
+    "Port Adelaide": ["Port Adelaide", "Power"],
+    "Richmond": ["Richmond", "Tigers"],
+    "St Kilda": ["St Kilda", "Saints"],
+    "Sydney": ["Sydney", "Swans"],
+    "West Coast": ["West Coast", "Eagles"],
+    "Western Bulldogs": ["Western Bulldogs", "Bulldogs", "Footscray"],
+}
+
+
+def _score_text(text: str) -> tuple[float, float, float]:
+    words = set(re.findall(r"[a-z]+", text.lower()))
+    pos = len(words & POSITIVE_WORDS)
+    neg = len(words & NEGATIVE_WORDS)
+    total = pos + neg + 1
+    optimism = (pos - neg) / total
+    pressure = neg / total
+    stability = 1.0 - pressure
+    return stability, pressure, optimism
 
 RSS_FEEDS = [
     ("abc_afl", "https://www.abc.net.au/news/feed/7077144/rss.xml"),

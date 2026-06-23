@@ -63,6 +63,7 @@ export interface RoundPrediction {
   home_team: string;
   away_team: string;
   date: string | null;
+  venue: string | null;
   complete: boolean;
   home_score: number | null;
   away_score: number | null;
@@ -73,6 +74,62 @@ export interface RoundPrediction {
   predicted_home_score: number;
   predicted_away_score: number;
   confidence: number;
+}
+
+export interface NewsArticle {
+  title: string;
+  summary: string;
+  url: string;
+  published: string | null;
+  teams: string[];
+  sentiment: number;
+  is_injury: boolean;
+  tags: string[];
+}
+
+export interface InjuryUpdate {
+  player: string;
+  team: string;
+  status: string;
+  headline: string;
+  url: string;
+  published: string | null;
+}
+
+export interface MatchBriefing {
+  source: string;
+  headline: string;
+  summary: string;
+  key_factors: string[];
+  injury_impact: string;
+  news_watch: string[];
+}
+
+export interface MatchIntelligence {
+  match_id: number;
+  home_team: string;
+  away_team: string;
+  venue: string | null;
+  date: string | null;
+  news: NewsArticle[];
+  injuries: InjuryUpdate[];
+  sentiment: Record<string, number>;
+  briefing: MatchBriefing;
+}
+
+export interface RoundIntelligence {
+  year: number;
+  round: number;
+  news: NewsArticle[];
+  injuries: InjuryUpdate[];
+  injury_by_team: Record<string, number>;
+  matches: Array<{
+    match_id: number;
+    home_team: string;
+    away_team: string;
+    injury_count: number;
+    news_count: number;
+  }>;
 }
 
 export interface RoundResponse {
@@ -102,6 +159,22 @@ export async function fetchRound(year: number, round: number): Promise<RoundResp
   const params = new URLSearchParams({ year: String(year), round: String(round) });
   const res = await fetch(`${API_BASE}/predict-round?${params}`);
   if (!res.ok) throw new Error("Failed to fetch round predictions");
+  return res.json();
+}
+
+export async function fetchRoundIntelligence(
+  year: number,
+  round: number
+): Promise<RoundIntelligence> {
+  const params = new URLSearchParams({ year: String(year), round: String(round) });
+  const res = await fetch(`${API_BASE}/intelligence/round?${params}`);
+  if (!res.ok) throw new Error("Failed to fetch round intelligence");
+  return res.json();
+}
+
+export async function fetchIntelligence(matchId: number): Promise<MatchIntelligence> {
+  const res = await fetch(`${API_BASE}/intelligence/match/${matchId}`);
+  if (!res.ok) throw new Error("Failed to fetch match intelligence");
   return res.json();
 }
 

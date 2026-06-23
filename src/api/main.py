@@ -22,6 +22,7 @@ from src.db.session import SessionLocal, init_db
 # that actually have to *compute* a prediction. In production everything is
 # precomputed (StoredPrediction rows + detail_json), so the request hot paths
 # never import the modelling stack at all.
+from src.intelligence.service import get_match_intelligence, get_round_intelligence
 from src.predict.serialize import stored_to_item, upsert_stored_prediction
 
 
@@ -171,6 +172,29 @@ def predictions_status() -> dict[str, Any]:
         session.close()
 
 
+@app.get("/intelligence/round")
+def intelligence_round(year: int = 2026, round: int = 1) -> dict[str, Any]:
+    """Live AFL news, injuries, and per-match intel for a round."""
+    session = SessionLocal()
+    try:
+        return get_round_intelligence(session, year, round)
+    finally:
+        session.close()
+
+
+@app.get("/intelligence/match/{match_id}")
+def intelligence_match(match_id: int) -> dict[str, Any]:
+    """News, injuries, sentiment, and AI briefing for one match."""
+    session = SessionLocal()
+    try:
+        match = session.get(Match, match_id)
+        if not match:
+            raise HTTPException(404, "Match not found")
+        return get_match_intelligence(session, match)
+    finally:
+        session.close()
+
+
 @app.get("/predict/{match_id}")
 def predict_match(match_id: int, n_sims: int = DEFAULT_SIMS) -> dict[str, Any]:
     session = SessionLocal()
@@ -313,6 +337,7 @@ _API_PREFIXES = {
     "predict",
     "predict-round",
     "predictions",
+    "intelligence",
     "simulate",
     "docs",
     "redoc",

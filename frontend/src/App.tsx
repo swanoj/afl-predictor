@@ -1,242 +1,55 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  fetchPrediction,
   fetchRound,
-  type Prediction,
+  fetchRoundIntelligence,
+  type RoundIntelligence,
   type RoundPrediction,
 } from "./api";
-import { MarginHistogram } from "./MarginHistogram";
-
-function actualWinner(p: RoundPrediction): string | null {
-  if (!p.complete || p.home_score == null || p.away_score == null) return null;
-  if (p.home_score === p.away_score) return "Draw";
-  return p.home_score > p.away_score ? p.home_team : p.away_team;
-}
-
-function TipCard({
-  p,
-  onOpen,
-}: {
-  p: RoundPrediction;
-  onOpen: (p: RoundPrediction) => void;
-}) {
-  const homeFav = p.home_win_prob >= p.away_win_prob;
-  const winner = actualWinner(p);
-  const tipCorrect = winner ? winner === p.predicted_winner : null;
-  const margin = p.predicted_margin;
-
-  return (
-    <button className="tip-card" onClick={() => onOpen(p)}>
-      <div className="tip-status">
-        <span className="conf-pill">{p.confidence.toFixed(0)}% conf</span>
-        {p.complete && tipCorrect != null && (
-          <span className={tipCorrect ? "tip-check ok" : "tip-check bad"}>
-            {tipCorrect ? "✓" : "✗"}
-          </span>
-        )}
-      </div>
-
-      <div className="tip-teams">
-        <div className={`tip-team ${homeFav ? "fav" : ""}`}>
-          <span className="tip-team-name">{p.home_team}</span>
-          <span className="tip-team-prob">{p.home_win_prob.toFixed(0)}%</span>
-        </div>
-        <div className="tip-vs">vs</div>
-        <div className={`tip-team ${!homeFav ? "fav" : ""}`}>
-          <span className="tip-team-name">{p.away_team}</span>
-          <span className="tip-team-prob">{p.away_win_prob.toFixed(0)}%</span>
-        </div>
-      </div>
-
-      <div className="tip-winner">
-        Tip: <strong>{p.predicted_winner}</strong> by {Math.abs(margin).toFixed(0)}
-      </div>
-
-      <div className="win-bar">
-        <div className="win-bar-home" style={{ width: `${p.home_win_prob}%` }} />
-        <div className="win-bar-away" style={{ width: `${p.away_win_prob}%` }} />
-      </div>
-
-      <div className="tip-scores">
-        <span>
-          Pred: {p.predicted_home_score.toFixed(0)} –{" "}
-          {p.predicted_away_score.toFixed(0)}
-        </span>
-        {p.complete && p.home_score != null ? (
-          <span className="tip-final">
-            Final: {p.home_score} – {p.away_score}
-          </span>
-        ) : (
-          <span className="tip-upcoming">Upcoming</span>
-        )}
-      </div>
-    </button>
-  );
-}
-
-function MatchDetail({
-  pick,
-  onClose,
-}: {
-  pick: RoundPrediction;
-  onClose: () => void;
-}) {
-  const [prediction, setPrediction] = useState<Prediction | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  const load = useCallback(async () => {
-    setLoading(true);
-    try {
-      setPrediction(await fetchPrediction(pick.match_id, 10000));
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  }, [pick.match_id]);
-
-  useEffect(() => {
-    load();
-  }, [load]);
-
-  return (
-    <div className="modal-backdrop" onClick={onClose}>
-      <div className="modal" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-header">
-          <h2>
-            {pick.home_team} vs {pick.away_team}
-          </h2>
-          <button className="modal-close" onClick={onClose}>
-            ✕
-          </button>
-        </div>
-
-        {loading && !prediction ? (
-          <div className="loading">Computing full prediction…</div>
-        ) : prediction ? (
-          <>
-            <div className="section-label">
-              Model win probability{" "}
-              <span className="badge-model">Logistic + calibration</span>
-            </div>
-            <div className="win-bar">
-              <div
-                className="win-bar-home"
-                style={{ width: `${prediction.home_win_prob}%` }}
-              >
-                {prediction.home_win_prob.toFixed(1)}%
-              </div>
-              <div
-                className="win-bar-away"
-                style={{ width: `${prediction.away_win_prob}%` }}
-              >
-                {prediction.away_win_prob.toFixed(1)}%
-              </div>
-            </div>
-
-            <div className="stats-row">
-              <div className="stat-box">
-                <div className="label">Predicted Score</div>
-                <div className="value">
-                  {prediction.median_home_score.toFixed(0)} –{" "}
-                  {prediction.median_away_score.toFixed(0)}
-                </div>
-              </div>
-              <div className="stat-box">
-                <div className="label">Predicted Margin</div>
-                <div className="value">
-                  {prediction.median_margin > 0 ? "+" : ""}
-                  {prediction.median_margin.toFixed(0)}
-                </div>
-              </div>
-              <div className="stat-box">
-                <div className="label">95th Percentile</div>
-                <div className="value">{prediction.p95_margin.toFixed(0)}</div>
-              </div>
-            </div>
-
-            <div className="chart-section">
-              <h3>Margin Distribution</h3>
-              <p className="section-note">
-                Normal around the Ridge predicted margin (σ ={" "}
-                {prediction.std_margin.toFixed(1)}). Win probability above is the
-                calibrated logistic, not this distribution.
-              </p>
-              <MarginHistogram
-                data={prediction.margin_histogram}
-                homeTeam={pick.home_team}
-              />
-            </div>
-
-            {prediction.player_projections && (
-              <div className="chart-section">
-                <h3>Player Disposal Projections (p10 – p90)</h3>
-                <p className="section-note">
-                  Simulation-based projections from the Monte Carlo player engine
-                  (does not drive the win probability above).
-                </p>
-                <div className="player-columns">
-                  {(
-                    [
-                      ["home", pick.home_team],
-                      ["away", pick.away_team],
-                    ] as const
-                  ).map(([side, team]) => (
-                    <div key={side} className="player-column">
-                      <h4>{team}</h4>
-                      <div className="player-list">
-                        {Object.entries(
-                          prediction.player_projections![side] || {}
-                        )
-                          .slice(0, 8)
-                          .map(([name, stats]) => (
-                            <div key={name} className="player-item">
-                              <span className="name">{name}</span>
-                              <span className="range">
-                                {stats.p10.toFixed(0)} – {stats.p90.toFixed(0)}
-                              </span>
-                            </div>
-                          ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-          </>
-        ) : (
-          <div className="error">Could not load match detail.</div>
-        )}
-      </div>
-    </div>
-  );
-}
+import { MatchDetail } from "./components/MatchDetail";
+import { NewsFeed } from "./components/NewsFeed";
+import { NewsSkeleton, TipBoardSkeleton } from "./components/Skeleton";
+import { TipCard, actualWinner } from "./components/TipCard";
 
 export default function App() {
   const [year, setYear] = useState(2026);
-  const [round, setRound] = useState(1);
+  const [round, setRound] = useState(16);
   const [predictions, setPredictions] = useState<RoundPrediction[]>([]);
+  const [intel, setIntel] = useState<RoundIntelligence | null>(null);
   const [loading, setLoading] = useState(false);
+  const [intelLoading, setIntelLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [pick, setPick] = useState<RoundPrediction | null>(null);
 
   const loadRound = useCallback(async () => {
     setLoading(true);
+    setIntelLoading(true);
     setError(null);
     try {
-      const data = await fetchRound(year, round);
+      const [data, roundIntel] = await Promise.all([
+        fetchRound(year, round),
+        fetchRoundIntelligence(year, round),
+      ]);
       setPredictions(data.predictions);
+      setIntel(roundIntel);
     } catch {
       setError("Could not load predictions. Is the API running?");
       setPredictions([]);
+      setIntel(null);
     } finally {
       setLoading(false);
+      setIntelLoading(false);
     }
   }, [year, round]);
 
   useEffect(() => {
     loadRound();
   }, [loadRound]);
+
+  const injuryByMatch = useMemo(() => {
+    const map = new Map<number, number>();
+    intel?.matches.forEach((m) => map.set(m.match_id, m.injury_count));
+    return map;
+  }, [intel]);
 
   const completed = predictions.filter((p) => p.complete);
   const correct = completed.filter(
@@ -245,12 +58,19 @@ export default function App() {
 
   return (
     <div className="app">
-      <header>
-        <h1>AFL God-Tier Predictor</h1>
-        <p>
-          Logistic regression + calibration for win probability · Ridge for
-          margin &amp; scores · Monte Carlo for player projections
-        </p>
+      <header className="hero">
+        <div className="hero-text">
+          <p className="eyebrow">Live intelligence · Model + news</p>
+          <h1>AFL God-Tier Predictor</h1>
+          <p>
+            Calibrated win probabilities, live AFL headlines, injury wire, and
+            AI match briefings — all in one board.
+          </p>
+        </div>
+        <div className="hero-badges">
+          <span className="live-pill">AFL Wire live</span>
+          <span className="model-pill">Logistic + Ridge + MC</span>
+        </div>
       </header>
 
       <div className="controls">
@@ -269,7 +89,7 @@ export default function App() {
           ))}
         </select>
         <button onClick={loadRound} disabled={loading}>
-          Refresh
+          {loading ? "Refreshing…" : "Refresh"}
         </button>
         {completed.length > 0 && (
           <span className="record-pill">
@@ -279,22 +99,69 @@ export default function App() {
       </div>
 
       {error && <div className="error">{error}</div>}
-      {loading && <div className="loading">Loading round predictions…</div>}
 
-      {!loading && !error && predictions.length === 0 && (
-        <div className="loading">No games found for this round.</div>
-      )}
+      <div className="layout">
+        <main className="layout-main">
+          {loading ? (
+            <TipBoardSkeleton />
+          ) : predictions.length === 0 ? (
+            <div className="empty-note">No games found for this round.</div>
+          ) : (
+            <div className="tip-board">
+              {predictions.map((p) => (
+                <TipCard
+                  key={p.match_id}
+                  p={p}
+                  injuryCount={injuryByMatch.get(p.match_id) ?? 0}
+                  onOpen={setPick}
+                />
+              ))}
+            </div>
+          )}
+        </main>
 
-      <div className="tip-board">
-        {predictions.map((p) => (
-          <TipCard key={p.match_id} p={p} onOpen={setPick} />
-        ))}
+        <aside className="layout-sidebar panel">
+          <div className="sidebar-header">
+            <h2>AFL Wire</h2>
+            <p>Headlines & injuries for this round</p>
+          </div>
+          {intelLoading ? (
+            <NewsSkeleton />
+          ) : (
+            <>
+              {intel && intel.injuries.length > 0 && (
+                <div className="sidebar-section">
+                  <h3>Injury updates</h3>
+                  <div className="injury-chips">
+                    {intel.injuries.slice(0, 6).map((item, idx) => (
+                      <a
+                        key={`${item.player}-${idx}`}
+                        className={`injury-chip status-${item.status}`}
+                        href={item.url}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <strong>{item.player}</strong>
+                        <span>{item.team}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              )}
+              <NewsFeed
+                articles={intel?.news ?? []}
+                compact
+                emptyMessage="Pulling AFL.com.au headlines…"
+              />
+            </>
+          )}
+        </aside>
       </div>
 
       <footer className="app-footer">
-        Competitive with public consensus (~0.006 Brier behind Squiggle);
-        calibrated probabilities. Click any game for the full margin
-        distribution and player projections.
+        Model competitive with public consensus (~0.006 Brier behind Squiggle).
+        News and AI briefings are informational — headline win probability stays
+        model-driven. Set OPENAI_API_KEY for GPT briefings.
       </footer>
 
       {pick && <MatchDetail pick={pick} onClose={() => setPick(null)} />}

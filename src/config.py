@@ -17,6 +17,10 @@ DATABASE_URL = os.getenv("DATABASE_URL", f"sqlite:///{DATA_DIR / 'afl_engine.db'
 SQUIGGLE_USER_AGENT = os.getenv(
     "SQUIGGLE_USER_AGENT", "AFLPredictor/1.0 (contact@example.com)"
 )
+
+# Optional OpenAI key for AI match briefings (falls back to rule-based if unset).
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 SQUIGGLE_BASE_URL = "https://api.squiggle.com.au/"
 
 # Elo defaults

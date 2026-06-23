@@ -64,6 +64,7 @@ def stored_to_item(row, match) -> dict[str, Any]:
         "home_team": match.home_team,
         "away_team": match.away_team,
         "date": match.date.isoformat() if match.date else None,
+        "venue": match.venue,
         "complete": bool(match.complete),
         "home_score": match.home_score,
         "away_score": match.away_score,

@@ -186,11 +186,7 @@ export function MatchCentre({
               )}
 
               {tab === "lineups" && (
-                <LineupBoard
-                  lineups={centre.lineups}
-                  homeSquad={centre.home.top_squad}
-                  awaySquad={centre.away.top_squad}
-                />
+                <LineupBoard lineups={centre.lineups} />
               )}
 
               {tab === "players" && (

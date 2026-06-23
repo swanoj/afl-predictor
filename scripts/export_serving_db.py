@@ -35,10 +35,12 @@ from src.db.models import (
     PlayerValue,
     ServingPlayerOpponentSplit,
     ServingPlayerProfile,
+    ServingRecentLineup,
     ServingRoster,
     StoredPrediction,
 )
 from src.intelligence.player_performance import build_serving_player_profiles
+from src.intelligence.recent_lineups import build_serving_recent_lineups
 from src.intelligence.squads import (
     active_squad_player_names,
     build_serving_roster_payload,
@@ -126,6 +128,14 @@ def _export_player_performance(src, dst, *, season: int, teams: set[str]) -> tup
     return profile_count, split_count
 
 
+def _export_recent_lineups(src, dst, *, season: int, teams: set[str]) -> int:
+    payload = build_serving_recent_lineups(src, season, teams)
+    if not payload:
+        return 0
+    dst.execute(insert(ServingRecentLineup.__table__), payload)
+    return len(payload)
+
+
 def export(out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if out_path.exists():
@@ -155,6 +165,7 @@ def export(out_path: Path) -> None:
         roster_total = 0
         profile_total = 0
         split_total = 0
+        lineup_total = 0
         for yr in range(max(2024, season - 2), season + 1):
             yr_teams = _season_teams(src, yr) or teams
             pv_total += _export_player_values(src, dst, season=yr, teams=yr_teams)
@@ -164,6 +175,7 @@ def export(out_path: Path) -> None:
             )
             profile_total += p_count
             split_total += s_count
+            lineup_total += _export_recent_lineups(src, dst, season=yr, teams=yr_teams)
         print(
             f"  copied {pv_total:>5} rows -> player_values "
             f"(seasons {max(2024, season - 2)}-{season}, current squads only)"
@@ -175,6 +187,10 @@ def export(out_path: Path) -> None:
         print(
             f"  copied {profile_total:>5} rows -> serving_player_profiles, "
             f"{split_total:>5} opponent splits"
+        )
+        print(
+            f"  copied {lineup_total:>5} rows -> serving_recent_lineups "
+            f"(last-match 22s)"
         )
 
     # Compact the file (reclaims free pages, drops WAL slack).

@@ -1,13 +1,10 @@
 """Expected lineups for upcoming matches (numpy-free serving path).
 
-Roster candidates come from the compact ``player_values`` rows exported into
-``deploy/serving.db``. Players flagged ``out`` (or ``omitted`` / ``sidelined``)
-in injury headlines are removed; the highest-value remaining candidates fill
-the expected 22.
+Primary source is the **last completed match 22** for each team (exported as
+``ServingRecentLineup`` on the serving DB). Injury-flagged players are removed
+and gaps are filled from the current squad pool ranked by value.
 
-When the full engine DB is available (offline / dev), roster candidates can
-also be inferred from recent ``PlayerGameLog`` activity via
-``roster_from_game_logs``.
+When no recent match exists, falls back to value-ranked squad candidates.
 """
 
 from __future__ import annotations
@@ -19,6 +16,7 @@ from sqlalchemy.orm import Session
 
 from src.db.models import Match, PlayerGameLog, PlayerValue
 from src.intelligence.news import InjuryUpdate
+from src.intelligence.recent_lineups import recent_match_lineup
 from src.intelligence.squads import roster_candidates as current_roster_candidates
 from src.predict.lineup_adjust import PlayerValueMap, lineup_value, replacement_level
 
@@ -128,6 +126,47 @@ def expected_lineup(
     return selected
 
 
+def expected_lineup_with_fill(
+    base_order: Sequence[str],
+    fill_candidates: Sequence[str],
+    out_players: set[str],
+    *,
+    size: int = LINEUP_SIZE,
+) -> list[str]:
+    """Keep ``base_order`` (e.g. last match), drop outs, fill gaps from pool."""
+    out_lower = {p.lower() for p in out_players}
+    selected: list[str] = []
+    seen: set[str] = set()
+
+    for name in base_order:
+        if name.lower() in out_lower or name in seen:
+            continue
+        selected.append(name)
+        seen.add(name)
+        if len(selected) >= size:
+            return selected
+
+    for name in fill_candidates:
+        if len(selected) >= size:
+            break
+        if name.lower() in out_lower or name in seen:
+            continue
+        selected.append(name)
+        seen.add(name)
+
+    return selected
+
+
+def lineup_values_for_players(
+    players: Sequence[str],
+    team: str,
+    values: PlayerValueMap,
+) -> dict[str, float]:
+    return {
+        name: round(float(values.get((name, team), 0.0)), 1) for name in players
+    }
+
+
 def baseline_lineup_value_proxy(
     roster_candidates: Sequence[str],
     team: str,
@@ -164,21 +203,37 @@ def derive_team_lineup(
     """Expected 22 + metadata for one team in an upcoming match."""
     rep = replacement if replacement is not None else replacement_level(values)
 
-    candidates = current_roster_candidates(
+    fill_pool = current_roster_candidates(
         session, team, year, round_, values
     )
-
     out_players = players_out_from_injuries(injuries, team)
-    lineup = expected_lineup(candidates, out_players)
-    baseline = baseline_lineup_value_proxy(candidates, team, values, replacement=rep)
+
+    recent = recent_match_lineup(session, team, year, round_)
+    if recent is not None:
+        base_lineup, source_meta = recent
+        lineup = expected_lineup_with_fill(
+            base_lineup, fill_pool, out_players
+        )
+        lineup_source = source_meta.get("lineup_source", "last_match")
+    else:
+        lineup = expected_lineup(fill_pool, out_players)
+        lineup_source = "value_ranked"
+        source_meta = {}
+
+    baseline = baseline_lineup_value_proxy(fill_pool, team, values, replacement=rep)
 
     return {
         "team": team,
         "expected_lineup": lineup,
         "out_players": sorted(out_players),
-        "roster_pool_size": len(candidates),
+        "roster_pool_size": len(fill_pool),
         "lineup_value": lineup_value(lineup, team, values, rep) if lineup else 0.0,
         "baseline_lineup_value": baseline,
+        "lineup_source": lineup_source,
+        "lineup_source_detail": source_meta,
+        "lineup_values": lineup_values_for_players(
+            lineup + list(out_players), team, values
+        ),
     }
 
 

@@ -1749,6 +1749,18 @@ header p {
   opacity: 0.85;
 }
 
+.lineup-source-note {
+  margin: 0;
+  padding: 0.45rem 0.65rem 0;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.lineup-board-note {
+  grid-column: 1 / -1;
+  margin-bottom: 0.25rem;
+}
+
 .lineup-list {
   padding: 0.5rem;
   display: grid;

@@ -1,34 +1,37 @@
-import type { MatchLineups, SquadPlayer } from "../api";
+import type { MatchLineups } from "../api";
 import { getTeam } from "../teams";
 
-function valueMap(squad: SquadPlayer[]): Map<string, number> {
-  const m = new Map<string, number>();
-  for (const p of squad) {
-    m.set(p.player_name, p.value);
+function lineupSourceLabel(side: MatchLineups["home"]): string {
+  if (side.lineup_source === "last_match" && side.lineup_source_detail) {
+    const d = side.lineup_source_detail;
+    if (d.source_year && d.source_round && d.source_opponent) {
+      return `From ${d.source_year} R${d.source_round} vs ${d.source_opponent}`;
+    }
   }
-  return m;
+  if (side.lineup_source === "value_ranked") {
+    return "Model-ranked (no recent match data)";
+  }
+  return "Last known match selection";
 }
 
 function LineupColumn({
-  team,
-  lineup,
-  outPlayers,
-  squadValues,
+  side,
 }: {
-  team: string;
-  lineup: string[];
-  outPlayers: string[];
-  squadValues: Map<string, number>;
+  side: MatchLineups["home"];
 }) {
-  const brand = getTeam(team);
+  const brand = getTeam(side.team);
+  const values = side.lineup_values ?? {};
+  const lineup = side.expected_lineup;
+  const outPlayers = side.out_players;
+
   const maxVal = Math.max(
-    ...lineup.map((n) => squadValues.get(n) ?? 0),
-    ...outPlayers.map((n) => squadValues.get(n) ?? 0),
+    ...lineup.map((n) => values[n] ?? 0),
+    ...outPlayers.map((n) => values[n] ?? 0),
     1
   );
 
   const renderRow = (name: string, isOut: boolean) => {
-    const val = squadValues.get(name) ?? 0;
+    const val = values[name] ?? 0;
     const pct = maxVal > 0 ? (val / maxVal) * 100 : 0;
     return (
       <div
@@ -59,9 +62,11 @@ function LineupColumn({
         style={{ background: brand.gradient }}
       >
         <span className="lineup-column-abbr">{brand.abbr}</span>
-        <span className="lineup-column-team">{team}</span>
+        <span className="lineup-column-team">{side.team}</span>
         <span className="lineup-column-count">{lineup.length}/22</span>
       </div>
+
+      <p className="lineup-source-note">{lineupSourceLabel(side)}</p>
 
       <div className="lineup-list">
         {lineup.map((name) => renderRow(name, false))}
@@ -77,32 +82,16 @@ function LineupColumn({
   );
 }
 
-export function LineupBoard({
-  lineups,
-  homeSquad,
-  awaySquad,
-}: {
-  lineups: MatchLineups;
-  homeSquad: SquadPlayer[];
-  awaySquad: SquadPlayer[];
-}) {
-  const homeValues = valueMap(homeSquad);
-  const awayValues = valueMap(awaySquad);
-
+export function LineupBoard({ lineups }: { lineups: MatchLineups }) {
   return (
     <div className="lineup-board">
-      <LineupColumn
-        team={lineups.home.team}
-        lineup={lineups.home.expected_lineup}
-        outPlayers={lineups.home.out_players}
-        squadValues={homeValues}
-      />
-      <LineupColumn
-        team={lineups.away.team}
-        lineup={lineups.away.expected_lineup}
-        outPlayers={lineups.away.out_players}
-        squadValues={awayValues}
-      />
+      <p className="section-note lineup-board-note">
+        Projected 22 from each club&apos;s most recent completed match (AFL Tables
+        via Squiggle fixtures). Not the official Thursday team sheet — refresh
+        after named teams drop for live selections.
+      </p>
+      <LineupColumn side={lineups.home} />
+      <LineupColumn side={lineups.away} />
     </div>
   );
 }

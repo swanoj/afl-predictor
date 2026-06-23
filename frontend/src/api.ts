@@ -488,6 +488,13 @@ export interface TeamLineupSide {
   roster_pool_size: number;
   lineup_value: number;
   baseline_lineup_value: number | null;
+  lineup_source?: "last_match" | "value_ranked";
+  lineup_source_detail?: {
+    source_year?: number;
+    source_round?: number;
+    source_opponent?: string | null;
+  };
+  lineup_values?: Record<string, number>;
 }
 
 export interface MatchLineups {

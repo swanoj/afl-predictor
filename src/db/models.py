@@ -156,6 +156,26 @@ class ServingRoster(Base):
     rank: Mapped[int] = mapped_column(Integer, default=0)
 
 
+class ServingRecentLineup(Base):
+    """Last completed-match 22 exported for each team/season."""
+
+    __tablename__ = "serving_recent_lineups"
+    __table_args__ = (
+        UniqueConstraint(
+            "team", "season", "player_name", name="uq_serving_recent_lineup"
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    team: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    season: Mapped[int] = mapped_column(Integer, nullable=False, index=True)
+    player_name: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    slot: Mapped[int] = mapped_column(Integer, default=0)
+    source_year: Mapped[int | None] = mapped_column(Integer)
+    source_round: Mapped[int | None] = mapped_column(Integer)
+    source_opponent: Mapped[str | None] = mapped_column(String(64))
+
+
 class ServingPlayerProfile(Base):
     """Per-player season performance snapshot for the serving DB."""
 

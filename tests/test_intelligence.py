@@ -88,3 +88,17 @@ def test_rule_briefing():
     assert "Carlton" in briefing["headline"]
     assert briefing["source"] == "rules"
     assert len(briefing["key_factors"]) >= 2
+
+
+def test_origin_headline_not_carlton():
+    """NSW Blues Origin rugby must not match Carlton AFL."""
+    from src.intelligence.news import _match_teams
+
+    title = "Blues dealt fresh blow with Mitchell ruled out of Origin III"
+    assert _match_teams(title) == []
+
+
+def test_carlton_afl_headline_matches():
+    from src.intelligence.news import _match_teams
+
+    assert "Carlton" in _match_teams("Carlton midfielder ruled out with hamstring injury")

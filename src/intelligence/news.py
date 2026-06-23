@@ -25,25 +25,56 @@ NEGATIVE_WORDS = {
 }
 
 TEAM_KEYWORDS: dict[str, list[str]] = {
-    "Adelaide": ["Adelaide", "Crows"],
-    "Brisbane Lions": ["Brisbane", "Lions"],
-    "Carlton": ["Carlton", "Blues"],
-    "Collingwood": ["Collingwood", "Magpies"],
-    "Essendon": ["Essendon", "Bombers"],
-    "Fremantle": ["Fremantle", "Dockers"],
-    "Geelong": ["Geelong", "Cats"],
-    "Gold Coast": ["Gold Coast", "Suns"],
-    "GWS": ["GWS", "Giants"],
-    "Hawthorn": ["Hawthorn", "Hawks"],
-    "Melbourne": ["Melbourne", "Demons"],
-    "North Melbourne": ["North Melbourne", "Kangaroos"],
-    "Port Adelaide": ["Port Adelaide", "Power"],
-    "Richmond": ["Richmond", "Tigers"],
-    "St Kilda": ["St Kilda", "Saints"],
-    "Sydney": ["Sydney", "Swans"],
-    "West Coast": ["West Coast", "Eagles"],
-    "Western Bulldogs": ["Western Bulldogs", "Bulldogs", "Footscray"],
+    # Prefer full names / distinctive phrases. Avoid bare nicknames like "Blues"
+    # or "Tigers" that collide with NRL and other sports.
+    "Adelaide": ["Adelaide Crows", "Adelaide"],
+    "Brisbane Lions": ["Brisbane Lions", "Brisbane"],
+    "Carlton": ["Carlton Blues", "Carlton"],
+    "Collingwood": ["Collingwood Magpies", "Collingwood"],
+    "Essendon": ["Essendon Bombers", "Essendon"],
+    "Fremantle": ["Fremantle Dockers", "Fremantle"],
+    "Geelong": ["Geelong Cats", "Geelong"],
+    "Gold Coast": ["Gold Coast Suns", "Gold Coast"],
+    "GWS": ["Greater Western Sydney", "GWS Giants", "GWS"],
+    "Hawthorn": ["Hawthorn Hawks", "Hawthorn"],
+    "Melbourne": ["Melbourne Demons", "Melbourne"],
+    "North Melbourne": ["North Melbourne Kangaroos", "North Melbourne"],
+    "Port Adelaide": ["Port Adelaide Power", "Port Adelaide"],
+    "Richmond": ["Richmond Tigers", "Richmond"],
+    "St Kilda": ["St Kilda Saints", "St Kilda"],
+    "Sydney": ["Sydney Swans", "Sydney"],
+    "West Coast": ["West Coast Eagles", "West Coast"],
+    "Western Bulldogs": ["Western Bulldogs", "Footscray"],
 }
+
+# Headlines containing these are other sports — never tag AFL teams.
+NON_AFL_MARKERS = re.compile(
+    r"\b("
+    r"origin(?:\s+[ivx]+|\s+game|\s+series)?|state of origin|"
+    r"nrl|rugby league|rugby union|super rugby|"
+    r"a-league|soccer|premier league|"
+    r"nba|nfl|mlb|"
+    r"nsw blues|queensland maroons|maroons\b|"
+    r"broncos|panthers|storm|rabbitohs|raiders|knights|"
+    r"bulldogs?\s+(?:nrl|rugby)|wests tigers|"
+    r"cricket|ashes|test match|big bash|ipl"
+    r")\b",
+    re.I,
+)
+
+# Compiled patterns per team — longest keywords first to prefer specific matches.
+_TEAM_PATTERNS: list[tuple[str, re.Pattern[str]]] = []
+for _team, _keywords in TEAM_KEYWORDS.items():
+    parts = sorted(_keywords, key=len, reverse=True)
+    _TEAM_PATTERNS.append(
+        (
+            _team,
+            re.compile(
+                "|".join(re.escape(kw) for kw in parts),
+                re.I,
+            ),
+        )
+    )
 
 
 def _score_text(text: str) -> tuple[float, float, float]:
@@ -122,11 +153,16 @@ class InjuryUpdate:
         return asdict(self)
 
 
+def _is_non_afl(text: str) -> bool:
+    return bool(NON_AFL_MARKERS.search(text))
+
+
 def _match_teams(text: str) -> list[str]:
-    lower = text.lower()
+    if _is_non_afl(text):
+        return []
     matched: list[str] = []
-    for team, keywords in TEAM_KEYWORDS.items():
-        if any(kw.lower() in lower for kw in keywords):
+    for team, pattern in _TEAM_PATTERNS:
+        if pattern.search(text):
             matched.append(team)
     return matched
 
@@ -198,6 +234,10 @@ def fetch_news_feed(*, limit: int = 60) -> list[NewsArticle]:
             summary = entry.get("summary", entry.get("description", ""))
             summary = re.sub(r"<[^>]+>", " ", summary).strip()
             text = f"{title} {summary}"
+
+            if _is_non_afl(text):
+                continue
+
             teams = _match_teams(text)
 
             # Sport feed: keep AFL-relevant stories only.
@@ -249,7 +289,11 @@ def filter_news_for_teams(
     team_set = set(teams)
     matched = [a for a in articles if team_set.intersection(a.teams)]
     if len(matched) < limit // 2:
-        general = [a for a in articles if a.is_injury or "preview" in a.tags]
+        general = [
+            a
+            for a in articles
+            if (a.is_injury or "preview" in a.tags) and a.teams
+        ]
         for article in general:
             if article not in matched:
                 matched.append(article)

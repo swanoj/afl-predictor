@@ -1959,6 +1959,221 @@ header p {
   font-weight: 600;
 }
 
+.player-stat-role {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.player-stat-delta {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.78rem;
+}
+
+.player-stat-delta.pos {
+  color: #4ade80;
+}
+
+.player-stat-delta.neg {
+  color: #f87171;
+}
+
+.matchup-grade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.4rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.matchup-grade.grade-a {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+}
+
+.matchup-grade.grade-b {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+}
+
+.matchup-grade.grade-c {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+}
+
+.matchup-grade.grade-d {
+  background: rgba(248, 113, 113, 0.15);
+  color: #f87171;
+}
+
+.matchup-grade.grade-neutral {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-muted);
+}
+
+/* --- Performance / matchup panel --- */
+.performance-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.performance-section h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.9rem;
+}
+
+.defense-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.defense-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.defense-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.defense-team-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.defense-team-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.defense-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.defense-label {
+  display: block;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.defense-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.key-matchups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.key-matchup-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem;
+}
+
+.key-matchup-card h4 {
+  margin: 0 0 0.65rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.key-matchup-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.key-matchup-vs {
+  align-self: center;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.key-matchup-player {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  position: relative;
+  padding-left: 0.55rem;
+}
+
+.key-matchup-player.edge {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+  padding: 0.35rem 0.35rem 0.35rem 0.55rem;
+}
+
+.key-matchup-dot {
+  position: absolute;
+  left: 0;
+  top: 0.35rem;
+  width: 3px;
+  height: calc(100% - 0.5rem);
+  border-radius: 2px;
+}
+
+.key-matchup-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.key-matchup-role {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.key-matchup-stat {
+  font-size: 0.72rem;
+}
+
+.key-matchup-delta {
+  font-size: 0.68rem;
+}
+
+.key-matchup-delta.pos {
+  color: #4ade80;
+}
+
+.key-matchup-delta.neg {
+  color: #f87171;
+}
+
+.key-matchup-empty {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
 /* --- Ladder panel --- */
 .ladder-panel-header {
   display: flex;

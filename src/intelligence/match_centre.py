@@ -11,6 +11,7 @@ from sqlalchemy.orm import Session
 from src.db.models import Match, StoredPrediction
 from src.intelligence.lineups import derive_match_lineups
 from src.intelligence.market import get_market_edge
+from src.intelligence.matchups import build_match_performance_layer
 from src.intelligence.news import extract_injuries, fetch_news_feed, filter_news_for_teams
 from src.intelligence.service import _cached_feed
 from src.intelligence.teams import (
@@ -91,6 +92,13 @@ def get_match_centre(session: Session, match_id: int) -> dict[str, Any]:
     ladder = compute_ladder(session, match.year)
     before_round = match.round
 
+    performance = build_match_performance_layer(
+        session,
+        match,
+        lineups,
+        player_projections=player_projections,
+    )
+
     return {
         "match_id": match.id,
         "fixture": {
@@ -108,6 +116,7 @@ def get_match_centre(session: Session, match_id: int) -> dict[str, Any]:
         "lineups": lineups,
         "injuries": [item.to_dict() for item in injuries],
         "player_projections": player_projections,
+        "performance": performance,
         "home": _team_centre_summary(
             session, match.home_team, match.year, before_round, ladder
         ),

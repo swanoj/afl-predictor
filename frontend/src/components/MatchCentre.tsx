@@ -15,6 +15,7 @@ import { LineupBoard } from "./LineupBoard";
 import { MarketEdge } from "./MarketEdge";
 import { NewsFeed } from "./NewsFeed";
 import { PlayerStatBoard } from "./PlayerStatBoard";
+import { PerformancePanel } from "./PerformancePanel";
 import { ScoreboardHeader } from "./ScoreboardHeader";
 import { SimilarGames } from "./SimilarGames";
 import { WhatIfPanel } from "./WhatIfPanel";
@@ -192,12 +193,32 @@ export function MatchCentre({
                 />
               )}
 
-              {tab === "players" && centre.player_projections && (
-                <PlayerStatBoard
-                  projections={centre.player_projections}
-                  homeTeam={centre.fixture.home_team}
-                  awayTeam={centre.fixture.away_team}
-                />
+              {tab === "players" && (
+                <>
+                  {centre.performance && (
+                    <PerformancePanel
+                      performance={centre.performance}
+                      homeTeam={centre.fixture.home_team}
+                      awayTeam={centre.fixture.away_team}
+                    />
+                  )}
+                  {centre.player_projections ? (
+                    <PlayerStatBoard
+                      projections={centre.player_projections}
+                      homeTeam={centre.fixture.home_team}
+                      awayTeam={centre.fixture.away_team}
+                      performance={centre.performance}
+                    />
+                  ) : (
+                    centre.performance && (
+                      <p className="section-note">
+                        Monte Carlo disposal projections are not cached for this
+                        fixture yet — performance and matchup grades still use
+                        season and opponent history.
+                      </p>
+                    )
+                  )}
+                </>
               )}
 
               {tab === "intel" && intel && (

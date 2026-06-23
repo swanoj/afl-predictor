@@ -156,6 +156,56 @@ class ServingRoster(Base):
     rank: Mapped[int] = mapped_column(Integer, default=0)
 
 
+class ServingPlayerProfile(Base):
+    """Per-player season performance snapshot for the serving DB."""
+
+    __tablename__ = "serving_player_profiles"
+    __table_args__ = (
+        UniqueConstraint(
+            "team", "season", "player_name", name="uq_serving_player_profile"
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    team: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    season: Mapped[int] = mapped_column(Integer, nullable=False, index=True)
+    player_name: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    role: Mapped[str] = mapped_column(String(32), nullable=False, default="Generic")
+    disposals_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    goals_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    tackles_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    clearances_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    hit_outs_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    games: Mapped[int] = mapped_column(Integer, default=0)
+    form_disposals: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    form_goals: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    form_games: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class ServingPlayerOpponentSplit(Base):
+    """Player performance vs a specific opponent (serving DB)."""
+
+    __tablename__ = "serving_player_opponent_splits"
+    __table_args__ = (
+        UniqueConstraint(
+            "team",
+            "player_name",
+            "opponent",
+            "season",
+            name="uq_serving_player_opponent",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    team: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    season: Mapped[int] = mapped_column(Integer, nullable=False, index=True)
+    player_name: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    opponent: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    disposals_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    goals_avg: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    games: Mapped[int] = mapped_column(Integer, default=0)
+
+
 class EloRating(Base):
     __tablename__ = "elo_ratings"
     __table_args__ = (UniqueConstraint("team", "as_of_date", name="uq_elo_team_date"),)

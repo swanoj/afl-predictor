@@ -29,7 +29,16 @@ from sqlalchemy import create_engine, func, insert, select
 from sqlalchemy.orm import Session
 
 from src.config import DATABASE_URL, ROOT_DIR
-from src.db.models import Base, Match, PlayerValue, ServingRoster, StoredPrediction
+from src.db.models import (
+    Base,
+    Match,
+    PlayerValue,
+    ServingPlayerOpponentSplit,
+    ServingPlayerProfile,
+    ServingRoster,
+    StoredPrediction,
+)
+from src.intelligence.player_performance import build_serving_player_profiles
 from src.intelligence.squads import (
     active_squad_player_names,
     build_serving_roster_payload,
@@ -104,6 +113,19 @@ def _export_serving_rosters(src, dst, *, season: int, teams: set[str]) -> int:
     return len(payload)
 
 
+def _export_player_performance(src, dst, *, season: int, teams: set[str]) -> tuple[int, int]:
+    profiles, splits = build_serving_player_profiles(src, season, teams)
+    profile_count = 0
+    split_count = 0
+    if profiles:
+        dst.execute(insert(ServingPlayerProfile.__table__), profiles)
+        profile_count = len(profiles)
+    if splits:
+        dst.execute(insert(ServingPlayerOpponentSplit.__table__), splits)
+        split_count = len(splits)
+    return profile_count, split_count
+
+
 def export(out_path: Path) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
     if out_path.exists():
@@ -131,10 +153,17 @@ def export(out_path: Path) -> None:
         # Export values for recent prediction seasons (stored preds are 2024+).
         pv_total = 0
         roster_total = 0
+        profile_total = 0
+        split_total = 0
         for yr in range(max(2024, season - 2), season + 1):
             yr_teams = _season_teams(src, yr) or teams
             pv_total += _export_player_values(src, dst, season=yr, teams=yr_teams)
             roster_total += _export_serving_rosters(src, dst, season=yr, teams=yr_teams)
+            p_count, s_count = _export_player_performance(
+                src, dst, season=yr, teams=yr_teams
+            )
+            profile_total += p_count
+            split_total += s_count
         print(
             f"  copied {pv_total:>5} rows -> player_values "
             f"(seasons {max(2024, season - 2)}-{season}, current squads only)"
@@ -142,6 +171,10 @@ def export(out_path: Path) -> None:
         print(
             f"  copied {roster_total:>5} rows -> serving_rosters "
             f"(seasons {max(2024, season - 2)}-{season})"
+        )
+        print(
+            f"  copied {profile_total:>5} rows -> serving_player_profiles, "
+            f"{split_total:>5} opponent splits"
         )
 
     # Compact the file (reclaims free pages, drops WAL slack).

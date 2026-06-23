@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import type { PlayerProjection } from "../api";
+import type { PlayerPerformanceRow, PlayerProjection } from "../api";
 import { getTeam } from "../teams";
 
-type SortKey = "name" | "p50" | "p10" | "p90" | "goals";
+type SortKey = "name" | "p50" | "p10" | "p90" | "goals" | "delta" | "grade";
 type Side = "home" | "away";
 
 interface PlayerRow {
@@ -10,6 +10,7 @@ interface PlayerRow {
   side: Side;
   team: string;
   stats: PlayerProjection;
+  performance?: PlayerPerformanceRow;
 }
 
 function DisposalBar({
@@ -48,6 +49,7 @@ export function PlayerStatBoard({
   projections,
   homeTeam,
   awayTeam,
+  performance,
 }: {
   projections: {
     home: Record<string, PlayerProjection>;
@@ -55,6 +57,10 @@ export function PlayerStatBoard({
   };
   homeTeam: string;
   awayTeam: string;
+  performance?: {
+    home_players: PlayerPerformanceRow[];
+    away_players: PlayerPerformanceRow[];
+  };
 }) {
   const [sortKey, setSortKey] = useState<SortKey>("p50");
   const [sortAsc, setSortAsc] = useState(false);
@@ -63,16 +69,39 @@ export function PlayerStatBoard({
   const homeBrand = getTeam(homeTeam);
   const awayBrand = getTeam(awayTeam);
 
+  const perfByName = useMemo(() => {
+    const map = new Map<string, PlayerPerformanceRow>();
+    for (const row of performance?.home_players ?? []) {
+      map.set(`home:${row.player_name}`, row);
+    }
+    for (const row of performance?.away_players ?? []) {
+      map.set(`away:${row.player_name}`, row);
+    }
+    return map;
+  }, [performance]);
+
   const rows = useMemo(() => {
     const list: PlayerRow[] = [];
     for (const [name, stats] of Object.entries(projections.home)) {
-      list.push({ name, side: "home", team: homeTeam, stats });
+      list.push({
+        name,
+        side: "home",
+        team: homeTeam,
+        stats,
+        performance: perfByName.get(`home:${name}`),
+      });
     }
     for (const [name, stats] of Object.entries(projections.away)) {
-      list.push({ name, side: "away", team: awayTeam, stats });
+      list.push({
+        name,
+        side: "away",
+        team: awayTeam,
+        stats,
+        performance: perfByName.get(`away:${name}`),
+      });
     }
     return list;
-  }, [projections, homeTeam, awayTeam]);
+  }, [projections, homeTeam, awayTeam, perfByName]);
 
   const filtered = useMemo(() => {
     let list = filterSide === "all" ? rows : rows.filter((r) => r.side === filterSide);
@@ -95,6 +124,14 @@ export function PlayerStatBoard({
         case "goals":
           av = a.stats.goal_exp ?? 0;
           bv = b.stats.goal_exp ?? 0;
+          break;
+        case "delta":
+          av = a.performance?.delta_disposals ?? -999;
+          bv = b.performance?.delta_disposals ?? -999;
+          break;
+        case "grade":
+          av = a.performance?.matchup_grade ?? "";
+          bv = b.performance?.matchup_grade ?? "";
           break;
         default:
           av = a.stats.p50;
@@ -146,6 +183,7 @@ export function PlayerStatBoard({
               <th onClick={() => toggleSort("name")} className="sortable">
                 Player{sortIndicator("name")}
               </th>
+              {performance && <th>Role</th>}
               <th>Team</th>
               <th onClick={() => toggleSort("p10")} className="sortable">
                 Disp. range{sortIndicator("p10")}
@@ -156,6 +194,16 @@ export function PlayerStatBoard({
               <th onClick={() => toggleSort("goals")} className="sortable">
                 Goals{sortIndicator("goals")}
               </th>
+              {performance && (
+                <>
+                  <th onClick={() => toggleSort("delta")} className="sortable">
+                    vs Opp{sortIndicator("delta")}
+                  </th>
+                  <th onClick={() => toggleSort("grade")} className="sortable">
+                    Grade{sortIndicator("grade")}
+                  </th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -164,6 +212,11 @@ export function PlayerStatBoard({
               return (
                 <tr key={`${row.side}-${row.name}`}>
                   <td className="player-stat-name">{row.name}</td>
+                  {performance && (
+                    <td className="player-stat-role">
+                      {row.performance?.role ?? "–"}
+                    </td>
+                  )}
                   <td>
                     <span
                       className="player-stat-team-badge"
@@ -190,6 +243,37 @@ export function PlayerStatBoard({
                       ? row.stats.goal_exp.toFixed(1)
                       : "–"}
                   </td>
+                  {performance && (
+                    <>
+                      <td
+                        className={`player-stat-delta${
+                          (row.performance?.delta_disposals ?? 0) >= 0
+                            ? " pos"
+                            : " neg"
+                        }`}
+                      >
+                        {row.performance?.delta_disposals != null
+                          ? `${row.performance.delta_disposals >= 0 ? "+" : ""}${row.performance.delta_disposals.toFixed(1)}`
+                          : "–"}
+                        {row.performance?.vs_opponent_games
+                          ? ` (${row.performance.vs_opponent_games}g)`
+                          : ""}
+                      </td>
+                      <td>
+                        <span
+                          className={`matchup-grade ${
+                            ["A", "B", "C", "D"].includes(
+                              row.performance?.matchup_grade ?? ""
+                            )
+                              ? `grade-${row.performance!.matchup_grade.toLowerCase()}`
+                              : "grade-neutral"
+                          }`}
+                        >
+                          {row.performance?.matchup_grade ?? "–"}
+                        </span>
+                      </td>
+                    </>
+                  )}
                 </tr>
               );
             })}

@@ -29,6 +29,65 @@ export interface PlayerProjection {
   goal_exp?: number;
 }
 
+export interface PlayerPerformanceRow {
+  player_name: string;
+  team: string;
+  opponent: string;
+  role: string;
+  season_disposals: number | null;
+  season_goals: number | null;
+  form_disposals: number | null;
+  form_goals?: number | null;
+  form_games?: number;
+  tackles_avg?: number;
+  clearances_avg?: number;
+  hit_outs_avg?: number;
+  vs_opponent_disposals: number | null;
+  vs_opponent_goals: number | null;
+  vs_opponent_games: number;
+  delta_disposals: number | null;
+  delta_goals: number | null;
+  form_delta: number | null;
+  matchup_grade: string;
+  projection_p50: number | null;
+  projection_goals: number | null;
+  opponent_def_rank: number | null;
+}
+
+export interface TeamPerformanceProfile {
+  team: string;
+  opponent: string;
+  defensive_rank?: number;
+  teams_ranked?: number;
+  avg_scored?: number;
+  avg_conceded?: number;
+  games?: number;
+  opponent_defensive_rank?: number | null;
+}
+
+export interface KeyMatchupBattle {
+  id: string;
+  label: string;
+  home: PlayerPerformanceRow | null;
+  away: PlayerPerformanceRow | null;
+  edge: "home" | "away" | "even";
+}
+
+export interface MatchPerformanceLayer {
+  match_id: number;
+  year: number;
+  round: number;
+  home_team: string;
+  away_team: string;
+  team_profiles: {
+    home: TeamPerformanceProfile;
+    away: TeamPerformanceProfile;
+  };
+  home_players: PlayerPerformanceRow[];
+  away_players: PlayerPerformanceRow[];
+  key_matchups: KeyMatchupBattle[];
+}
+
 export interface Prediction {
   match_id: number;
   home_team: string;
@@ -469,6 +528,7 @@ export interface MatchCentre {
     home: Record<string, PlayerProjection>;
     away: Record<string, PlayerProjection>;
   } | null;
+  performance: MatchPerformanceLayer;
   home: TeamCentreSummary;
   away: TeamCentreSummary;
   ladder: LadderRow[];

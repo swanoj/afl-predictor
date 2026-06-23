@@ -19,6 +19,7 @@ from sqlalchemy.orm import Session
 
 from src.db.models import Match, PlayerGameLog, PlayerValue
 from src.intelligence.news import InjuryUpdate
+from src.intelligence.squads import roster_candidates as current_roster_candidates
 from src.predict.lineup_adjust import PlayerValueMap, lineup_value, replacement_level
 
 LINEUP_SIZE = 22
@@ -163,11 +164,9 @@ def derive_team_lineup(
     """Expected 22 + metadata for one team in an upcoming match."""
     rep = replacement if replacement is not None else replacement_level(values)
 
-    candidates = roster_candidates_from_values(values, team)
-    if not candidates:
-        candidates = roster_from_game_logs(
-            session, team, before_year=year, before_round=round_
-        )
+    candidates = current_roster_candidates(
+        session, team, year, round_, values
+    )
 
     out_players = players_out_from_injuries(injuries, team)
     lineup = expected_lineup(candidates, out_players)

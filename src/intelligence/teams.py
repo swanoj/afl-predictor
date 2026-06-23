@@ -1,6 +1,7 @@
 """Team metadata, ladder, form, and squad helpers (numpy-free serving path).
 
-Uses only ``matches`` and ``player_values`` — safe on the lean ``serving.db``.
+Uses ``matches``, ``serving_rosters`` (or recent game logs), and filtered
+``player_values`` — safe on the lean ``serving.db``.
 """
 
 from __future__ import annotations
@@ -10,7 +11,8 @@ from typing import Any
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
-from src.db.models import Match, PlayerValue
+from src.db.models import Match
+from src.intelligence.squads import team_squad_rows
 
 TEAM_META: dict[str, dict[str, str]] = {
     "Adelaide": {
@@ -328,33 +330,8 @@ def team_squad(
     *,
     limit: int = 30,
 ) -> list[dict[str, Any]]:
-    """Top ``limit`` players for ``team`` by walk-forward ``PlayerValue``."""
-    rows = session.scalars(
-        select(PlayerValue)
-        .where(PlayerValue.team == team, PlayerValue.as_of_season == year)
-        .order_by(PlayerValue.value.desc(), PlayerValue.player_name)
-        .limit(limit)
-    ).all()
-    if not rows:
-        latest = session.scalar(select(func.max(PlayerValue.as_of_season)))
-        if latest and latest != year:
-            rows = session.scalars(
-                select(PlayerValue)
-                .where(PlayerValue.team == team, PlayerValue.as_of_season == latest)
-                .order_by(PlayerValue.value.desc(), PlayerValue.player_name)
-                .limit(limit)
-            ).all()
-
-    return [
-        {
-            "player_name": row.player_name,
-            "team": row.team,
-            "value": round(float(row.value), 1),
-            "raw_value": round(float(row.raw_value), 1),
-            "games_sample": int(row.games_sample),
-        }
-        for row in rows
-    ]
+    """Top ``limit`` current-squad players for ``team`` (recent appearances only)."""
+    return team_squad_rows(session, team, year, limit=limit)
 
 
 def _ladder_position(

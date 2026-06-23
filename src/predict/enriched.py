@@ -10,10 +10,10 @@ from src.intelligence.lineups import (
     derive_match_lineups,
     expected_lineup,
     load_player_values_map,
-    roster_candidates_from_values,
     baseline_lineup_value_proxy,
     replacement_level,
 )
+from src.intelligence.squads import roster_candidates
 from src.intelligence.news import extract_injuries, fetch_news_feed, filter_news_for_teams
 from src.intelligence.service import _cached_feed
 from src.predict.lineup_adjust import apply_lineup_adjustment, lineup_value
@@ -98,8 +98,12 @@ def run_whatif(
     values = load_player_values_map(session, match.year)
     rep = replacement_level(values)
 
-    home_candidates = roster_candidates_from_values(values, match.home_team)
-    away_candidates = roster_candidates_from_values(values, match.away_team)
+    home_candidates = roster_candidates(
+        session, match.home_team, match.year, match.round, values
+    )
+    away_candidates = roster_candidates(
+        session, match.away_team, match.year, match.round, values
+    )
 
     home_out_set = {p.lower() for p in home_out}
     away_out_set = {p.lower() for p in away_out}

@@ -132,6 +132,30 @@ class PlayerValue(Base):
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
+class ServingRoster(Base):
+    """Current-squad snapshot exported into ``deploy/serving.db``.
+
+    Built from recent ``player_game_logs`` so lineups and squad views exclude
+    retired players that still have high lifetime ``PlayerValue`` rows.
+    """
+
+    __tablename__ = "serving_rosters"
+    __table_args__ = (
+        UniqueConstraint(
+            "team", "season", "player_name", name="uq_serving_roster"
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    team: Mapped[str] = mapped_column(String(64), nullable=False, index=True)
+    season: Mapped[int] = mapped_column(Integer, nullable=False, index=True)
+    player_name: Mapped[str] = mapped_column(String(128), nullable=False, index=True)
+    value: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    raw_value: Mapped[float] = mapped_column(Float, nullable=False, default=0.0)
+    games_recent: Mapped[int] = mapped_column(Integer, default=0)
+    rank: Mapped[int] = mapped_column(Integer, default=0)
+
+
 class EloRating(Base):
     __tablename__ = "elo_ratings"
     __table_args__ = (UniqueConstraint("team", "as_of_date", name="uq_elo_team_date"),)

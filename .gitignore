@@ -1,0 +1,23 @@
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.db.bak
+data/cache/
+data/api.log
+*.db-shm
+*.db-wal
+
+# The lean, read-only serving DB IS committed so Render can ship it with the
+# image (see scripts/export_serving_db.py). Keep this exception below any *.db
+# rule so it always stays tracked.
+!deploy/serving.db
+.pytest_cache/
+node_modules/
+frontend/dist/
+.DS_Store

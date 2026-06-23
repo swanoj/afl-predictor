@@ -1,0 +1,14 @@
+# Runtime (serving) dependencies ONLY — pinned.
+#
+# The deployed service serves PRECOMPUTED predictions (StoredPrediction rows +
+# detail_json) and the built SPA. Nothing is fitted at request time, so the
+# heavy modelling stack (numpy / pandas / scikit-learn / numba / scipy) is
+# intentionally EXCLUDED here, keeping the image small and cold-starts fast.
+#
+# To regenerate predictions you need the full dev environment instead:
+#     pip install -e ".[dev]"
+fastapi==0.138.0
+uvicorn==0.49.0
+sqlalchemy==2.0.51
+pydantic==2.13.4
+python-dotenv==1.2.2

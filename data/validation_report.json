@@ -1,0 +1,4365 @@
+{
+  "seasons": [
+    2024,
+    2025
+  ],
+  "models": [
+    "elo_v1",
+    "ridge_v1",
+    "logistic_v1",
+    "gbm_v1",
+    "calibrated:logistic:isotonic",
+    "calibrated:logistic:sigmoid",
+    "calibrated:gbm:isotonic",
+    "calibrated:gbm:sigmoid",
+    "integrated_v1"
+  ],
+  "backtests": {
+    "2024": {
+      "elo_v1": {
+        "model": "elo_v1",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.22542212104491371,
+        "mae": 26.894302756822274,
+        "logloss": 0.6393094852592237,
+        "accuracy": 0.6111111111111112,
+        "ece": 0.1500997997926671,
+        "mce": 0.3360548709454481
+      },
+      "ridge_v1": {
+        "model": "ridge_v1",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.2147143539326642,
+        "mae": 27.56634479288163,
+        "logloss": 0.6103090127315988,
+        "accuracy": 0.625,
+        "ece": 0.0905148721663479,
+        "mce": 0.21893611320020534
+      },
+      "logistic_v1": {
+        "model": "logistic_v1",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.21434598156017312,
+        "mae": NaN,
+        "logloss": 0.610190136993163,
+        "accuracy": 0.6296296296296297,
+        "ece": 0.08217142690091415,
+        "mce": 0.201854391717471
+      },
+      "gbm_v1": {
+        "model": "gbm_v1",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.22821037152168128,
+        "mae": NaN,
+        "logloss": 0.6464920104257225,
+        "accuracy": 0.6157407407407407,
+        "ece": 0.10601528551635009,
+        "mce": 0.26579402993127993
+      },
+      "calibrated:logistic:isotonic": {
+        "model": "calibrated:logistic:isotonic",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.21497613418289985,
+        "mae": NaN,
+        "logloss": 0.6086189768278385,
+        "accuracy": 0.6481481481481481,
+        "ece": 0.0656981720872624,
+        "mce": 0.28402209796791084
+      },
+      "calibrated:logistic:sigmoid": {
+        "model": "calibrated:logistic:sigmoid",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.21339537005131048,
+        "mae": NaN,
+        "logloss": 0.6099268123539614,
+        "accuracy": 0.6388888888888888,
+        "ece": 0.08336535952666221,
+        "mce": 0.19345134491882865
+      },
+      "calibrated:gbm:isotonic": {
+        "model": "calibrated:gbm:isotonic",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.2368529656382956,
+        "mae": NaN,
+        "logloss": 0.818004982049805,
+        "accuracy": 0.5972222222222222,
+        "ece": 0.11251874509956873,
+        "mce": 0.3332333333333333
+      },
+      "calibrated:gbm:sigmoid": {
+        "model": "calibrated:gbm:sigmoid",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.22838253281604134,
+        "mae": NaN,
+        "logloss": 0.6463423642554255,
+        "accuracy": 0.6064814814814815,
+        "ece": 0.11161871400755595,
+        "mce": 0.2762989494675967
+      },
+      "integrated_v1": {
+        "model": "integrated_v1",
+        "season": 2024,
+        "n": 216,
+        "brier": 0.2181937464633324,
+        "mae": NaN,
+        "logloss": 0.6196305166037809,
+        "accuracy": 0.6435185185185185,
+        "ece": 0.0733521446741703,
+        "mce": 0.16527749188893986
+      }
+    },
+    "2025": {
+      "elo_v1": {
+        "model": "elo_v1",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.19026909916313559,
+        "mae": 27.553774313374852,
+        "logloss": 0.5521097169492366,
+        "accuracy": 0.6898148148148148,
+        "ece": 0.09338161946563231,
+        "mce": 0.25304484295879165
+      },
+      "ridge_v1": {
+        "model": "ridge_v1",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.1841473435747708,
+        "mae": 26.793735622043776,
+        "logloss": 0.5433636120379293,
+        "accuracy": 0.6990740740740741,
+        "ece": 0.0888762176776815,
+        "mce": 0.13796216850508936
+      },
+      "logistic_v1": {
+        "model": "logistic_v1",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.18438804786780877,
+        "mae": NaN,
+        "logloss": 0.5440592530888312,
+        "accuracy": 0.7129629629629629,
+        "ece": 0.07384034634315895,
+        "mce": 0.13233001266391597
+      },
+      "gbm_v1": {
+        "model": "gbm_v1",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.1851999163365431,
+        "mae": NaN,
+        "logloss": 0.5468210236662236,
+        "accuracy": 0.7129629629629629,
+        "ece": 0.04883727617538227,
+        "mce": 0.18615104135423693
+      },
+      "calibrated:logistic:isotonic": {
+        "model": "calibrated:logistic:isotonic",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.18562328919335763,
+        "mae": NaN,
+        "logloss": 0.5904540236965128,
+        "accuracy": 0.7175925925925926,
+        "ece": 0.07460713633675756,
+        "mce": 0.37977693417186464
+      },
+      "calibrated:logistic:sigmoid": {
+        "model": "calibrated:logistic:sigmoid",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.18595142477664495,
+        "mae": NaN,
+        "logloss": 0.548945900812469,
+        "accuracy": 0.7129629629629629,
+        "ece": 0.08530495919810438,
+        "mce": 0.16891633444175733
+      },
+      "calibrated:gbm:isotonic": {
+        "model": "calibrated:gbm:isotonic",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.1969052746915469,
+        "mae": NaN,
+        "logloss": 0.6227603282902876,
+        "accuracy": 0.7083333333333334,
+        "ece": 0.0649985581304489,
+        "mce": 0.35883064233964584
+      },
+      "calibrated:gbm:sigmoid": {
+        "model": "calibrated:gbm:sigmoid",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.19089867179648526,
+        "mae": NaN,
+        "logloss": 0.5641788283910252,
+        "accuracy": 0.7222222222222222,
+        "ece": 0.07286522855171365,
+        "mce": 0.17368489508716625
+      },
+      "integrated_v1": {
+        "model": "integrated_v1",
+        "season": 2025,
+        "n": 216,
+        "brier": 0.1864086178480982,
+        "mae": NaN,
+        "logloss": 0.5514710540254565,
+        "accuracy": 0.7175925925925926,
+        "ece": 0.09004124363250189,
+        "mce": 0.2166180038249455
+      }
+    }
+  },
+  "benchmark": {
+    "2024": {
+      "elo_v1": {
+        "season": 2024,
+        "model_version": "elo_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.22542212104491377,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6111111111111112,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 9,
+        "pct_rounds_beaten": 31.03448275862069,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.3494085029815763,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.21371238940958742,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.11396313113866868,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.25639136068110213,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.08127970845379849,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.3492988282706421,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.30997625396757633,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.10277602833400212,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.2498217135367904,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.23344073394135403,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.2630280498113789,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.14169306683266122,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.3106625727524092,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3649910834924557,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.08972339077114559,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": true
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.056918145536890376,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.25416321403544534,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.3966839473892608,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.19350537743225632,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.18379699905088,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.20991202499758924,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.3076351168809739,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.2858818260957106,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.16336843841149243,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.13264800490278628,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.2847390999362098,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.305292512340703,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": false
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.1688235186385517,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.2747834289093675,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "ridge_v1": {
+        "season": 2024,
+        "model_version": "ridge_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.2147143539326642,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.625,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 9,
+        "pct_rounds_beaten": 31.03448275862069,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.250667990180093,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.16140031426914142,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.14525794076375356,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.2545969811766348,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.16467868328528537,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.26691565421090996,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.2752978958123201,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.1423826169754532,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.24695328648933743,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.18685356919232213,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.2200712661447712,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1679616710232047,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.2639158400567229,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.33275585093790827,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.10523703132741752,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.11062683758331886,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.2193955105239638,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.29161575222705083,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.16404133046059607,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.19151260461188213,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.2200138991200722,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.2616332429846032,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": true
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.2872390971427889,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.19358764442018855,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.14954428165218414,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.30031926275939724,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.199187422831911,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.32460183642500534,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.3656213074043756,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "logistic_v1": {
+        "season": 2024,
+        "model_version": "logistic_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.21434598156017312,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6296296296296297,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 11,
+        "pct_rounds_beaten": 37.93103448275862,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.26117673374325684,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.16619466693842525,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.13996032245864376,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.2518274512757395,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.16107779529664032,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.27795261023340484,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.27828781113732953,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.13603913393210132,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.24688247797279525,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.19569115312896995,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.21156683069517768,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.16919374716512814,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.2730477065767895,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3295683919776252,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.10445729225606182,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.10433189983460339,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.21546104454541595,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.2983538996421602,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.16841569306225573,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1868530186284291,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.21475993446063812,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.2575435611909691,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": true
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.2874130758854001,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1902986392316099,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.14663093740821598,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.29219621149990493,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.2052513089073093,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.31773995668613025,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.38303542693542,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "gbm_v1": {
+        "season": 2024,
+        "model_version": "gbm_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.22821037152168128,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6157407407407407,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 7,
+        "pct_rounds_beaten": 24.137931034482758,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.2668519728511369,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.2122299935681792,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.1788088930389637,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.28575133175726514,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.18835102989702823,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.2611210584808298,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": true
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.22796227570742245,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.16281493044248269,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.23219392027495134,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.1870274461711411,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.18705204090388847,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.16815566416584662,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.2830391175557492,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3405308806734852,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.13513684366634546,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.1225703104442889,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.23583087661230906,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.30192790044468876,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.1970259845479697,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.21422122207255162,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.25073976660575426,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.31602545030861023,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.32381780807392213,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1775450425062659,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.15355108218963157,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.28885182154041683,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.3012878095341549,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": false
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.2518111352942443,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.5069234875753776,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "calibrated:logistic:isotonic": {
+        "season": 2024,
+        "model_version": "calibrated:logistic:isotonic",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.21497613418289985,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6481481481481481,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 12,
+        "pct_rounds_beaten": 41.37931034482759,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.241288227367092,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": true
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.15776681402194526,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.1510930771851009,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.2619808015166706,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.19703615195055935,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.2716330359989233,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.2584943952832989,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.14763301669091577,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.23060696808691247,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.192665748790875,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.21217137828007665,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.16414879276070873,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.28073245194608437,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3245893852052725,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.10716346451752341,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.09820390484670927,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.21900904393922022,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.27233365394847286,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.17433835622189747,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1690498283169879,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.25484331718095493,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.21508799957677724,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": true
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.3234190697270926,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.18725368980729817,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.16346224178952726,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.30024195996066483,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.16081632653061223,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.3240816326530612,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.43183673469387757,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "calibrated:logistic:sigmoid": {
+        "season": 2024,
+        "model_version": "calibrated:logistic:sigmoid",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.21339537005131048,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6388888888888888,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 12,
+        "pct_rounds_beaten": 41.37931034482759,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.2455970025762827,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": true
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.15409859543697485,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.15724791778244093,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.2433078506210773,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.1854587093757184,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.26826751106538527,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.2741129313144571,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.14465067906062626,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.24363175133002615,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.19903138276245624,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.2011129060043445,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.17678655285378175,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.27655574950497963,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3210017923636216,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.11498531663099675,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.11660927293982604,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.21311552726600125,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": true
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.2620182096704834,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.1607201558737819,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.18237467444265124,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.2301496211507002,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.2262155923349837,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": true
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.30141090361299905,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.18629879001780353,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.16153307635693226,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.29100952338384534,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.21295073460580227,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.31176643390100445,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.4031135331409059,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "calibrated:gbm:isotonic": {
+        "season": 2024,
+        "model_version": "calibrated:gbm:isotonic",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.2368529656382956,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.5972222222222222,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 7,
+        "pct_rounds_beaten": 24.137931034482758,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.2646046457944669,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.17145439911378746,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.2146837128575318,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.32707121652593485,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.2193593641415196,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.2701835157316848,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.23048884093458138,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.1577923980959114,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.2559108232678949,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.2092188355449268,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.18908234431820228,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1371681483013217,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.2937457256752099,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3396661259234761,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.1539637524401774,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.15046395740333213,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.23948223119790812,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.34582120330186505,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.17108986691162215,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.18294610790339313,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.2679992489288904,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.34987122048064623,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.33344689001305733,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.14802262794882584,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.18076716619903738,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.32867340868530637,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.3845806067816776,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": false
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.21718820861678007,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.6091612135633552,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "calibrated:gbm:sigmoid": {
+        "season": 2024,
+        "model_version": "calibrated:gbm:sigmoid",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.22838253281604134,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6064814814814815,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 7,
+        "pct_rounds_beaten": 24.137931034482758,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.26149641652070804,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.2026017305175508,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.181998021479504,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.2874129571436592,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.19761322266898387,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.262775176709023,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": true
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.22993401555482784,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.15971316540505526,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.23459664108911207,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.18594925648400124,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.18516614832661293,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.16746074672930572,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.28841811757368196,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3448438545175833,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.13328273056067783,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.12008891755342284,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.23641890427180037,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.2929120221072476,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.1896724406554432,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.20921628593759495,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.2587208166974314,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.30487324153686474,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.3367688922112782,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1755660442344006,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.15769733443053802,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.2957525449719092,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.3061018477250177,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": false
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.2549089700043189,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.5302186521696448,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": false
+          }
+        ]
+      },
+      "integrated_v1": {
+        "season": 2024,
+        "model_version": "integrated_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 28,
+        "our_brier": 0.2181937464633324,
+        "consensus_brier": 0.20749796652569377,
+        "our_accuracy": 0.6435185185185185,
+        "consensus_accuracy": 0.6342592592592593,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 10,
+        "pct_rounds_beaten": 34.48275862068966,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 4,
+            "our_brier": 0.25390550917260946,
+            "consensus_brier": 0.24841940323660705,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.15558809369995114,
+            "consensus_brier": 0.17961358122732424,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.17334581342558147,
+            "consensus_brier": 0.16755926969706633,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.25203692873732053,
+            "consensus_brier": 0.2304623463297194,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 9,
+            "our_brier": 0.1919931707802819,
+            "consensus_brier": 0.12431068311649657,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 8,
+            "our_brier": 0.25804024578184415,
+            "consensus_brier": 0.26433069791772956,
+            "we_won": true
+          },
+          {
+            "round": 6,
+            "n_games": 8,
+            "our_brier": 0.31929622063084284,
+            "consensus_brier": 0.29089400936224485,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.1208206677009025,
+            "consensus_brier": 0.12326900773809525,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.24964996664530176,
+            "consensus_brier": 0.23599153935090703,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.17952608540221837,
+            "consensus_brier": 0.23276520512744991,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.1831329249433417,
+            "consensus_brier": 0.22004898027820546,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1890331192313532,
+            "consensus_brier": 0.1873172241964286,
+            "we_won": false
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.2896146824188666,
+            "consensus_brier": 0.2294211447612974,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.3571671946200051,
+            "consensus_brier": 0.3044881501546556,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 6,
+            "our_brier": 0.10368996718076899,
+            "consensus_brier": 0.10284140499574833,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 6,
+            "our_brier": 0.08150863672203508,
+            "consensus_brier": 0.11336303193239795,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 9,
+            "our_brier": 0.21883952943911913,
+            "consensus_brier": 0.21320407063184119,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.3016945194205082,
+            "consensus_brier": 0.2604203913775511,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.15791849941685687,
+            "consensus_brier": 0.17395265596371884,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.172300641804415,
+            "consensus_brier": 0.16425451728883222,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.2450692736459339,
+            "consensus_brier": 0.21676263408730156,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.2542430403498781,
+            "consensus_brier": 0.2631610824468411,
+            "we_won": true
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.3002542940625457,
+            "consensus_brier": 0.27919461638038545,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.21225215618128945,
+            "consensus_brier": 0.18847334068168933,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 9,
+            "our_brier": 0.1499779214513537,
+            "consensus_brier": 0.1280627757086168,
+            "we_won": false
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.29612681063647484,
+            "consensus_brier": 0.2451755914711934,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.26231407088607156,
+            "consensus_brier": 0.27577864992799994,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.3198139991906108,
+            "consensus_brier": 0.19649712145710058,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.20723305319919888,
+            "consensus_brier": 0.21835807494399992,
+            "we_won": true
+          }
+        ]
+      }
+    },
+    "2025": {
+      "elo_v1": {
+        "season": 2025,
+        "model_version": "elo_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.1902690991631356,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.6898148148148148,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 16,
+        "pct_rounds_beaten": 55.172413793103445,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.1917553818027709,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": true
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.18274757484610238,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.24876007896112015,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.12332870224394502,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.14139778379277093,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.1783403538158345,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": true
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3896774120540382,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.19999292792565276,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.16889311386834968,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.2594851976712602,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.39418993232252014,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.14290232445586928,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.15702136516805215,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": true
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.24035374120813008,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.17714703179245012,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.2670226835484643,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.046216326197588135,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": true
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.07187804630598398,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": true
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.27041438607757456,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1372173200384349,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.09838899443487771,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.09778304772973917,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.13581415948835654,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": true
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.16489410042741728,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.1323024446792081,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.43537832555272526,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.16168896790300752,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.20767877514611832,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.3151971007788004,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "ridge_v1": {
+        "season": 2025,
+        "model_version": "ridge_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.1841473435747708,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.6990740740740741,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 13,
+        "pct_rounds_beaten": 44.827586206896555,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.3052345833242766,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.1834321321080559,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.2565524663491802,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.13394810948770589,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.11066362764498144,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.18475285893536728,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3109371002803709,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.14292241610210796,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.1709654056599192,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.23327348591826227,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.3079846813158964,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1779547285413829,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.19125531788582537,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.22869504873350083,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.21258973489398364,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.24140746000544638,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.09397327150662911,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.0963011707859417,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.2058540961959422,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1598770896397085,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.09588041577877453,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.11447151185345548,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.15010415991746281,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.17608492751534402,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.14429459577995002,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.33881209827838854,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.14512115916079238,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.16433025241317195,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.3376397387428816,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "logistic_v1": {
+        "season": 2025,
+        "model_version": "logistic_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.18438804786780877,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7129629629629629,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 14,
+        "pct_rounds_beaten": 48.275862068965516,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.2847908964629068,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.17799307240324116,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.24743465830571282,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.13092226348222785,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.11194498894886235,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.1867589058339256,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3154942672574728,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.147613231170644,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.17711331946210865,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.2306736697299962,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.3150973633727833,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.17417986284198028,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.18711499893532463,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.23017992941865834,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.21135292576043282,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.2431536602912173,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.08572446524860422,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": true
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.0956632260322525,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.2132455868851174,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1595667054024691,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.09846263795878067,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.11259720769223318,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.14443722775000087,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.17621245335325136,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.14750476244297336,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.346917522358064,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.15695710046939454,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.1742993227997872,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.3517502789114682,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "gbm_v1": {
+        "season": 2025,
+        "model_version": "gbm_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.1851999163365431,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7129629629629629,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 13,
+        "pct_rounds_beaten": 44.827586206896555,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.27947277447991026,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.14809687542479658,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.22406723252659072,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.13199367941213608,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.1505802627649572,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.2645178810123028,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3056754238520425,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.133343537522387,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.1827491952315684,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.23455325518631723,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.31819645250981404,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1819590685117237,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.20817044147115885,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.27269149541406923,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.1932788555591818,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.22283086775625147,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.09428628841368238,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.10698642728897849,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.22341668657309832,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.19041065585578185,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.08395737876793352,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.10679426556551547,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.11867939153868279,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": true
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.13563767773328736,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.12758201361160304,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.2987795615189891,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.1142440665867622,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.23038849522350519,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.4046387874089509,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "calibrated:logistic:isotonic": {
+        "season": 2025,
+        "model_version": "calibrated:logistic:isotonic",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.18562328919335763,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7175925925925926,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 13,
+        "pct_rounds_beaten": 44.827586206896555,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.28195491954833546,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.19414158680911414,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": false
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.21880965965652716,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": true
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.168986139127007,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": false
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.10234183143982409,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.20845130930703093,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3347663564599776,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.1471521755378303,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.1717481228496986,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.21257799106647784,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.3256221646658504,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.16433055448771697,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.14796914799792865,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": true
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.21590492815340556,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.2547212426234042,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.21769644782631506,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.09644743738530896,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.112962997301936,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.2155119746862694,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.15553582029974894,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.10462510647484952,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.09807997825177825,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.1669228938547087,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.19010178307585146,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.12009874922461428,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.2968099065939021,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.22594144074024447,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.25206611570247933,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.29752066115702475,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "calibrated:logistic:sigmoid": {
+        "season": 2025,
+        "model_version": "calibrated:logistic:sigmoid",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.18595142477664497,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7129629629629629,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 15,
+        "pct_rounds_beaten": 51.724137931034484,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.2823495277622241,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.17783562618208604,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.2464204737787198,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.13604925821354583,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.11317120823939975,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.19456145865005947,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.3052375922608426,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.14552866729791666,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.17339634644097693,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": true
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.2335888587409038,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.30940817819827476,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.17643167895405998,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.1947395346545214,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.23219360824807742,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.2178429299336481,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.24410187626956747,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.08833183279660009,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": true
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.10350291047155075,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.20733840449484678,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.16214771912475173,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.09773841993296609,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.11237692699077716,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.15266007897924266,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1815670660967638,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.1486972907173766,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.3515853639193833,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.16779772277403093,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.18351277483846157,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.36720433939210045,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "calibrated:gbm:isotonic": {
+        "season": 2025,
+        "model_version": "calibrated:gbm:isotonic",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.1969052746915469,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7083333333333334,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 11,
+        "pct_rounds_beaten": 37.93103448275862,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.25280276816609,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.17140589416122545,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.23837754447785436,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.11146597008726378,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.16500031215800814,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.24032106115604218,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.2876920185346017,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": false
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.12158547074936149,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.2206165265811124,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.26191655905354705,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.3538156400788743,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.21637240599681956,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": false
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.1664385193099645,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": true
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.28399842389731333,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.2481567930159164,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.16796832266059963,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.09447850712302604,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.1639856823649124,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.24284618331595553,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": false
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.1926227553114902,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.10278294730259038,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.13323349668816287,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.13255497452127643,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": true
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1695351906425245,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.1488564501208622,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.263236680785162,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": true
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.22072941693364573,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.25280276816609,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": false
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.30574394463667826,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "calibrated:gbm:sigmoid": {
+        "season": 2025,
+        "model_version": "calibrated:gbm:sigmoid",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.19089867179648526,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7222222222222222,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 13,
+        "pct_rounds_beaten": 44.827586206896555,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.27311476103543686,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": false
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.1536466936456199,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.22444186582087516,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.14357861133719488,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.15500167214432245,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": false
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.25959084420176043,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.27702800737434613,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.1452092924194116,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": true
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.17774747013309597,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.23912580342300846,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": false
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.2950625497699375,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": false
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1948805421599664,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": false
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.21756311573274514,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.26220031017766166,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.21608442524200822,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.2187488097875395,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": true
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.11225192689670534,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.14028913821286887,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.21366339225015002,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.18888922438770223,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": false
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.09758796369794907,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": true
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.1237487356392782,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.13891008631803395,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": true
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.16154886799617454,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": true
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.14133141314945669,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.3018644083768884,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.149890344768909,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": true
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.23927571720353139,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.39210457290579187,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": true
+          }
+        ]
+      },
+      "integrated_v1": {
+        "season": 2025,
+        "model_version": "integrated_v1",
+        "consensus_label": "consensus(mean of tipsters)",
+        "n_games": 216,
+        "n_sources_typical": 26,
+        "our_brier": 0.18640861784809817,
+        "consensus_brier": 0.18044296263553333,
+        "our_accuracy": 0.7175925925925926,
+        "consensus_accuracy": 0.7361111111111112,
+        "beats_consensus": false,
+        "rounds_total": 29,
+        "rounds_beaten": 12,
+        "pct_rounds_beaten": 41.37931034482759,
+        "available": true,
+        "note": "",
+        "per_round": [
+          {
+            "round": 0,
+            "n_games": 2,
+            "our_brier": 0.14603286142602145,
+            "consensus_brier": 0.21278911278846158,
+            "we_won": true
+          },
+          {
+            "round": 1,
+            "n_games": 9,
+            "our_brier": 0.17500836046339885,
+            "consensus_brier": 0.17963408663872454,
+            "we_won": true
+          },
+          {
+            "round": 2,
+            "n_games": 8,
+            "our_brier": 0.2518238379531499,
+            "consensus_brier": 0.22032204918639053,
+            "we_won": false
+          },
+          {
+            "round": 3,
+            "n_games": 8,
+            "our_brier": 0.1430981370844751,
+            "consensus_brier": 0.14631494258875738,
+            "we_won": true
+          },
+          {
+            "round": 4,
+            "n_games": 8,
+            "our_brier": 0.1375594424234642,
+            "consensus_brier": 0.14121377881656805,
+            "we_won": true
+          },
+          {
+            "round": 5,
+            "n_games": 9,
+            "our_brier": 0.21935535633448067,
+            "consensus_brier": 0.1806338060568705,
+            "we_won": false
+          },
+          {
+            "round": 6,
+            "n_games": 9,
+            "our_brier": 0.2638007329312385,
+            "consensus_brier": 0.2872220880999342,
+            "we_won": true
+          },
+          {
+            "round": 7,
+            "n_games": 9,
+            "our_brier": 0.15473895755838807,
+            "consensus_brier": 0.14796991365384612,
+            "we_won": false
+          },
+          {
+            "round": 8,
+            "n_games": 9,
+            "our_brier": 0.18934523406179712,
+            "consensus_brier": 0.17543588120644313,
+            "we_won": false
+          },
+          {
+            "round": 9,
+            "n_games": 9,
+            "our_brier": 0.1983094570250232,
+            "consensus_brier": 0.20143529395299148,
+            "we_won": true
+          },
+          {
+            "round": 10,
+            "n_games": 9,
+            "our_brier": 0.2711216228226997,
+            "consensus_brier": 0.2907386804536489,
+            "we_won": true
+          },
+          {
+            "round": 11,
+            "n_games": 9,
+            "our_brier": 0.1804994942856143,
+            "consensus_brier": 0.18690035896614066,
+            "we_won": true
+          },
+          {
+            "round": 12,
+            "n_games": 7,
+            "our_brier": 0.21831012025466973,
+            "consensus_brier": 0.18124136860101436,
+            "we_won": false
+          },
+          {
+            "round": 13,
+            "n_games": 8,
+            "our_brier": 0.23401203925745853,
+            "consensus_brier": 0.20630257857063614,
+            "we_won": false
+          },
+          {
+            "round": 14,
+            "n_games": 7,
+            "our_brier": 0.2225098443678868,
+            "consensus_brier": 0.176763212772612,
+            "we_won": false
+          },
+          {
+            "round": 15,
+            "n_games": 7,
+            "our_brier": 0.249344246798167,
+            "consensus_brier": 0.24599848953508033,
+            "we_won": false
+          },
+          {
+            "round": 16,
+            "n_games": 7,
+            "our_brier": 0.09924777909130719,
+            "consensus_brier": 0.08880970623837699,
+            "we_won": false
+          },
+          {
+            "round": 17,
+            "n_games": 9,
+            "our_brier": 0.10307587992270278,
+            "consensus_brier": 0.07798992142504929,
+            "we_won": false
+          },
+          {
+            "round": 18,
+            "n_games": 9,
+            "our_brier": 0.19834698065181824,
+            "consensus_brier": 0.22951858447074297,
+            "we_won": true
+          },
+          {
+            "round": 19,
+            "n_games": 9,
+            "our_brier": 0.17519317518618582,
+            "consensus_brier": 0.1852992661423406,
+            "we_won": true
+          },
+          {
+            "round": 20,
+            "n_games": 9,
+            "our_brier": 0.11805979900533521,
+            "consensus_brier": 0.11025702369822483,
+            "we_won": false
+          },
+          {
+            "round": 21,
+            "n_games": 9,
+            "our_brier": 0.09678274539222033,
+            "consensus_brier": 0.09092902756245891,
+            "we_won": false
+          },
+          {
+            "round": 22,
+            "n_games": 9,
+            "our_brier": 0.15205230180783574,
+            "consensus_brier": 0.14028869837278105,
+            "we_won": false
+          },
+          {
+            "round": 23,
+            "n_games": 9,
+            "our_brier": 0.1820726181708154,
+            "consensus_brier": 0.16710811330374753,
+            "we_won": false
+          },
+          {
+            "round": 24,
+            "n_games": 10,
+            "our_brier": 0.15172120490048985,
+            "consensus_brier": 0.16914650094822486,
+            "we_won": true
+          },
+          {
+            "round": 25,
+            "n_games": 4,
+            "our_brier": 0.34053620181710875,
+            "consensus_brier": 0.26328559292000003,
+            "we_won": false
+          },
+          {
+            "round": 26,
+            "n_games": 2,
+            "our_brier": 0.25361398979848276,
+            "consensus_brier": 0.24337362878071825,
+            "we_won": false
+          },
+          {
+            "round": 27,
+            "n_games": 2,
+            "our_brier": 0.20070649573151528,
+            "consensus_brier": 0.2409695773611112,
+            "we_won": true
+          },
+          {
+            "round": 28,
+            "n_games": 1,
+            "our_brier": 0.4265018770952528,
+            "consensus_brier": 0.4116449808884688,
+            "we_won": false
+          }
+        ]
+      }
+    }
+  },
+  "calibration": {
+    "2024": {
+      "elo_v1": {
+        "ece": 0.1500997997926671,
+        "mce": 0.3360548709454481,
+        "brier": 0.22542212104491371
+      },
+      "ridge_v1": {
+        "ece": 0.0905148721663479,
+        "mce": 0.21893611320020534,
+        "brier": 0.2147143539326642
+      },
+      "logistic_v1": {
+        "ece": 0.08217142690091415,
+        "mce": 0.201854391717471,
+        "brier": 0.21434598156017312
+      },
+      "gbm_v1": {
+        "ece": 0.10601528551635009,
+        "mce": 0.26579402993127993,
+        "brier": 0.22821037152168128
+      },
+      "calibrated:logistic:isotonic": {
+        "ece": 0.0656981720872624,
+        "mce": 0.28402209796791084,
+        "brier": 0.21497613418289985
+      },
+      "calibrated:logistic:sigmoid": {
+        "ece": 0.08336535952666221,
+        "mce": 0.19345134491882865,
+        "brier": 0.21339537005131048
+      },
+      "calibrated:gbm:isotonic": {
+        "ece": 0.11251874509956873,
+        "mce": 0.3332333333333333,
+        "brier": 0.2368529656382956
+      },
+      "calibrated:gbm:sigmoid": {
+        "ece": 0.11161871400755595,
+        "mce": 0.2762989494675967,
+        "brier": 0.22838253281604134
+      },
+      "integrated_v1": {
+        "ece": 0.0733521446741703,
+        "mce": 0.16527749188893986,
+        "brier": 0.2181937464633324
+      }
+    },
+    "2025": {
+      "elo_v1": {
+        "ece": 0.09338161946563231,
+        "mce": 0.25304484295879165,
+        "brier": 0.19026909916313559
+      },
+      "ridge_v1": {
+        "ece": 0.0888762176776815,
+        "mce": 0.13796216850508936,
+        "brier": 0.1841473435747708
+      },
+      "logistic_v1": {
+        "ece": 0.07384034634315895,
+        "mce": 0.13233001266391597,
+        "brier": 0.18438804786780877
+      },
+      "gbm_v1": {
+        "ece": 0.04883727617538227,
+        "mce": 0.18615104135423693,
+        "brier": 0.1851999163365431
+      },
+      "calibrated:logistic:isotonic": {
+        "ece": 0.07460713633675756,
+        "mce": 0.37977693417186464,
+        "brier": 0.18562328919335763
+      },
+      "calibrated:logistic:sigmoid": {
+        "ece": 0.08530495919810438,
+        "mce": 0.16891633444175733,
+        "brier": 0.18595142477664495
+      },
+      "calibrated:gbm:isotonic": {
+        "ece": 0.0649985581304489,
+        "mce": 0.35883064233964584,
+        "brier": 0.1969052746915469
+      },
+      "calibrated:gbm:sigmoid": {
+        "ece": 0.07286522855171365,
+        "mce": 0.17368489508716625,
+        "brier": 0.19089867179648526
+      },
+      "integrated_v1": {
+        "ece": 0.09004124363250189,
+        "mce": 0.2166180038249455,
+        "brier": 0.1864086178480982
+      }
+    }
+  },
+  "ablation": {
+    "2024": {
+      "integrated_v1": {
+        "brier": 0.2181937464633324,
+        "ece": 0.0733521446741703,
+        "contrib_vs_full": 0.0
+      },
+      "integrated:flat_elo": {
+        "brier": 0.21604691784125155,
+        "ece": 0.08149374758934383,
+        "contrib_vs_full": -0.0021468286220808486
+      },
+      "integrated:drop_avail": {
+        "brier": 0.21828275928256932,
+        "ece": 0.06766828087907677,
+        "contrib_vs_full": 8.901281923692772e-05
+      },
+      "integrated:drop_xscore": {
+        "brier": 0.21568511103579907,
+        "ece": 0.02985456662671064,
+        "contrib_vs_full": -0.0025086354275333234
+      }
+    },
+    "2025": {
+      "integrated_v1": {
+        "brier": 0.1864086178480982,
+        "ece": 0.09004124363250189,
+        "contrib_vs_full": 0.0
+      },
+      "integrated:flat_elo": {
+        "brier": 0.18306616090168884,
+        "ece": 0.0816389666745075,
+        "contrib_vs_full": -0.003342456946409361
+      },
+      "integrated:drop_avail": {
+        "brier": 0.18746025199279956,
+        "ece": 0.06790285673472968,
+        "contrib_vs_full": 0.0010516341447013577
+      },
+      "integrated:drop_xscore": {
+        "brier": 0.18961717817039606,
+        "ece": 0.09428089661727769,
+        "contrib_vs_full": 0.0032085603222978543
+      }
+    }
+  }
+}

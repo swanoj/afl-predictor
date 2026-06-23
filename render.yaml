@@ -1,0 +1,18 @@
+# Render Blueprint — single free web service that serves BOTH the API and the
+# built React SPA from one public *.onrender.com URL.
+#
+# Render detects this file on "New + > Blueprint" (or auto-applies it when a
+# repo with render.yaml is connected) and builds the multi-stage Dockerfile.
+services:
+  - type: web
+    name: afl-predictor
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    # Render injects $PORT; the Dockerfile CMD binds to it.
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      # Serve the lean, read-only DB baked into the image.
+      - key: DATABASE_URL
+        value: sqlite:///deploy/serving.db

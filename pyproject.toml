@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "afl-predictor"
+version = "0.1.0"
+description = "SFN-Monte Carlo hybrid AFL predictor"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "numba>=0.58",
+    "scikit-learn>=1.3",
+    "sqlalchemy>=2.0",
+    "requests>=2.31",
+    "python-dotenv>=1.0",
+    "fastapi>=0.109",
+    "uvicorn>=0.27",
+    "beautifulsoup4>=4.12",
+    "lxml>=5.0",
+    "feedparser>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "httpx>=0.26"]
+
+[project.scripts]
+afl-predict = "src.cli.orchestrator:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -951,3 +951,314 @@ header p {
   margin: 0.1rem 0 0.6rem;
   line-height: 1.4;
 }
+
+/* --- Win bar with conformal interval --- */
+.win-bar-wrap {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.win-bar-wrap-compact {
+  margin: 0;
+}
+
+.win-bar-interval {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  background: rgba(247, 201, 72, 0.22);
+  border: 1px dashed rgba(247, 201, 72, 0.55);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.win-bar-wrap .win-bar {
+  position: relative;
+  z-index: 2;
+  margin: 0;
+}
+
+.badge-interval {
+  background: #2a2410;
+  color: #f7c948;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+  letter-spacing: 0.03em;
+}
+
+/* --- Lineup shift badge --- */
+.lineup-shift-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.lineup-shift-badge.inline {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.lineup-shift-badge.shift-up {
+  color: #5ddf8b;
+  background: #132818;
+  border: 1px solid #1f5a35;
+}
+
+.lineup-shift-badge.shift-down {
+  color: #ff8a8a;
+  background: #2a1515;
+  border: 1px solid #5a2020;
+}
+
+/* --- Market edge --- */
+.market-edge-pill {
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.12rem 0.45rem;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.market-edge-pill.tone-positive {
+  color: #cdd6ff;
+  background: #1d2350;
+  border: 1px solid #3a4a9a;
+}
+
+.market-edge-pill.tone-negative {
+  color: #ff8a8a;
+  background: #2a1515;
+  border: 1px solid #5a2020;
+}
+
+.market-edge-pill.tone-neutral {
+  color: #999;
+  background: #1a1a2e;
+  border: 1px solid #333;
+}
+
+.market-edge-panel {
+  background: #1a1a2e;
+  border: 1px solid #2a3a5a;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.market-edge-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.market-edge-source {
+  font-size: 0.68rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.market-edge-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.market-edge-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.market-edge-stat .label {
+  font-size: 0.68rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.market-edge-stat .value {
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.market-edge-rec {
+  font-size: 0.78rem;
+  color: #ccc;
+  line-height: 1.4;
+}
+
+.market-edge-kelly {
+  font-size: 0.72rem;
+  color: #888;
+  margin-top: 0.25rem;
+}
+
+/* --- Similar games --- */
+.similar-games {
+  margin: 1.25rem 0;
+}
+
+.similar-games-list {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.similar-game-item {
+  padding: 0.75rem;
+  border-radius: 10px;
+  background: #1a1a2e;
+  border: 1px solid #252535;
+}
+
+.similar-game-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.similar-game-matchup {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.similar-game-score {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #ff8c5a;
+}
+
+.similar-game-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  font-size: 0.68rem;
+  color: #777;
+}
+
+.similar-game-score-badge {
+  color: #f7c948;
+  font-weight: 700;
+}
+
+.similar-game-summary {
+  font-size: 0.75rem;
+  color: #aaa;
+  margin-top: 0.35rem;
+  line-height: 1.4;
+}
+
+/* --- What-if panel --- */
+.whatif-panel {
+  margin-bottom: 0;
+}
+
+.whatif-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  background: #1a1a2e;
+  border-radius: 10px;
+  margin-bottom: 0.85rem;
+}
+
+.whatif-probs {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.whatif-loading {
+  font-size: 0.72rem;
+  color: #888;
+}
+
+.whatif-error {
+  font-size: 0.78rem;
+  color: #ff6666;
+  margin-bottom: 0.65rem;
+}
+
+.whatif-columns {
+  margin-top: 0.25rem;
+}
+
+.whatif-list {
+  max-height: 320px;
+}
+
+.whatif-player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  background: #1a1a2e;
+  border-radius: 6px;
+  border: 1px solid transparent;
+}
+
+.whatif-player.is-out {
+  opacity: 0.65;
+  border-color: #3a2020;
+  background: #181018;
+}
+
+.whatif-player-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  min-width: 0;
+}
+
+.whatif-player-info .name {
+  font-size: 0.8rem;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whatif-player-info .range {
+  font-size: 0.68rem;
+  color: #888;
+}
+
+.whatif-toggle {
+  flex-shrink: 0;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid #333;
+  cursor: pointer;
+  background: #12121a;
+  color: #ccc;
+}
+
+.whatif-toggle.in {
+  color: #5ddf8b;
+  border-color: #1f5a35;
+  background: #132818;
+}
+
+.whatif-toggle.out {
+  color: #ff8a8a;
+  border-color: #5a2020;
+  background: #2a1515;
+}

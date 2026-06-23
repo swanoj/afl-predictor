@@ -22,7 +22,11 @@ from src.db.session import SessionLocal, init_db
 # that actually have to *compute* a prediction. In production everything is
 # precomputed (StoredPrediction rows + detail_json), so the request hot paths
 # never import the modelling stack at all.
+from src.intelligence.market import get_market_edge, get_round_market_edges
 from src.intelligence.service import get_match_intelligence, get_round_intelligence
+from src.intelligence.similar_games import find_similar_games
+from src.predict.conformal import get_conformal_interval
+from src.predict.enriched import enrich_prediction_item, run_whatif
 from src.predict.serialize import stored_to_item, upsert_stored_prediction
 
 
@@ -39,6 +43,11 @@ class EnvironmentOverride(BaseModel):
     territory_tilt: float = 0.0
     home_momentum: float = 0.0
     away_momentum: float = 0.0
+
+
+class WhatIfRequest(BaseModel):
+    home_out: list[str] = []
+    away_out: list[str] = []
 
 
 @asynccontextmanager
@@ -116,7 +125,10 @@ def predict_round(year: int = 2026, round: int = 1) -> dict[str, Any]:
         }
 
         if matches and all(m.id in stored for m in matches):
-            predictions = [stored_to_item(stored[m.id], m) for m in matches]
+            predictions = [
+                enrich_prediction_item(session, m, stored_to_item(stored[m.id], m))
+                for m in matches
+            ]
         else:
             # Fallback: compute (fits models) + persist for next time. Heavy
             # modelling stack imported lazily so the precomputed hot path stays
@@ -182,6 +194,29 @@ def intelligence_round(year: int = 2026, round: int = 1) -> dict[str, Any]:
         session.close()
 
 
+@app.get("/intelligence/market/{match_id}")
+def intelligence_market(match_id: int) -> dict[str, Any]:
+    """Model vs market edge, Kelly fraction, and betting recommendation."""
+    session = SessionLocal()
+    try:
+        match = session.get(Match, match_id)
+        if not match:
+            raise HTTPException(404, "Match not found")
+        return get_market_edge(session, match)
+    finally:
+        session.close()
+
+
+@app.get("/intelligence/market")
+def intelligence_market_round(year: int = 2026, round: int = 1) -> dict[str, Any]:
+    """Model vs market edges for every match in a round."""
+    session = SessionLocal()
+    try:
+        return get_round_market_edges(session, year, round)
+    finally:
+        session.close()
+
+
 @app.get("/intelligence/match/{match_id}")
 def intelligence_match(match_id: int) -> dict[str, Any]:
     """News, injuries, sentiment, and AI briefing for one match."""
@@ -191,6 +226,66 @@ def intelligence_match(match_id: int) -> dict[str, Any]:
         if not match:
             raise HTTPException(404, "Match not found")
         return get_match_intelligence(session, match)
+    finally:
+        session.close()
+
+
+@app.get("/intelligence/similar-games/{match_id}")
+def intelligence_similar_games(match_id: int) -> dict[str, Any]:
+    """Top historical matches with a similar macro profile (RAG context)."""
+    session = SessionLocal()
+    try:
+        match = session.get(Match, match_id)
+        if not match:
+            raise HTTPException(404, "Match not found")
+        return find_similar_games(session, match)
+    finally:
+        session.close()
+
+
+@app.get("/predict/{match_id}/interval")
+def predict_interval(match_id: int) -> dict[str, Any]:
+    """90% conformal interval for home win probability."""
+    session = SessionLocal()
+    try:
+        match = session.get(Match, match_id)
+        if not match:
+            raise HTTPException(404, "Match not found")
+
+        stored = session.scalars(
+            select(StoredPrediction).where(StoredPrediction.match_id == match_id)
+        ).first()
+        if stored is None:
+            raise HTTPException(404, "No stored prediction for this match")
+
+        interval = get_conformal_interval(stored.home_win_prob, match.year)
+        return {
+            "match_id": match_id,
+            "home_win_prob": stored.home_win_prob,
+            "year": match.year,
+            **interval,
+        }
+    finally:
+        session.close()
+
+
+@app.post("/predict/{match_id}/whatif")
+def predict_whatif(match_id: int, body: WhatIfRequest) -> dict[str, Any]:
+    """Counterfactual win probability with selected players OUT."""
+    session = SessionLocal()
+    try:
+        match = session.get(Match, match_id)
+        if not match:
+            raise HTTPException(404, "Match not found")
+        try:
+            return run_whatif(
+                session,
+                match,
+                home_out=body.home_out,
+                away_out=body.away_out,
+            )
+        except ValueError as exc:
+            raise HTTPException(404, str(exc)) from exc
     finally:
         session.close()
 

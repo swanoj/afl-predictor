@@ -37,6 +37,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Application code + the lean serving DB.
 COPY src/ ./src/
 COPY deploy/serving.db ./deploy/serving.db
+COPY deploy/conformal.json ./deploy/conformal.json
 
 # Built SPA from the frontend stage (FastAPI serves it from /app/frontend/dist).
 COPY --from=frontend /app/frontend/dist ./frontend/dist

@@ -57,6 +57,92 @@ export interface Prediction {
   player_projection_source?: string;
 }
 
+/** 90% conformal interval for home win probability (GET /predict/{id}/interval). */
+export interface ConformalInterval {
+  match_id: number;
+  home_win_prob: number;
+  year: number;
+  lower: number;
+  upper: number;
+  coverage: number;
+}
+
+/** Model vs market comparison (GET /intelligence/market/{id}). */
+export interface MarketEdge {
+  match_id: number;
+  home_team: string;
+  away_team: string;
+  model_home_win_prob: number;
+  model_away_win_prob: number;
+  market_home_implied_prob: number;
+  market_away_implied_prob: number;
+  market_source: string;
+  home_decimal_odds: number | null;
+  away_decimal_odds: number | null;
+  edge_pct: number;
+  bet_side: "home" | "away" | "none";
+  kelly_fraction: number;
+  recommendation: string;
+  n_bookmakers: number;
+  n_tipsters: number;
+  market_note: string;
+}
+
+export interface RoundMarketEdges {
+  year: number;
+  round: number;
+  edges: MarketEdge[];
+}
+
+/** Historical match with similar macro profile (GET /intelligence/similar-games/{id}). */
+export interface SimilarGame {
+  match_id: number;
+  year: number;
+  round: number;
+  home_team: string;
+  away_team: string;
+  venue: string | null;
+  home_score: number;
+  away_score: number;
+  winner: string | null;
+  margin: number;
+  home_win: boolean;
+  similarity_score: number;
+  summary: string;
+}
+
+export interface SimilarGamesResponse {
+  match_id: number;
+  query: {
+    home_team: string;
+    away_team: string;
+    venue: string | null;
+    elo_diff: number;
+    elo_bucket: number;
+    form_diff: number;
+    form_sign: string;
+  };
+  similar_games: SimilarGame[];
+  n_candidates: number;
+}
+
+/** POST /predict/{id}/whatif — counterfactual lineup toggles. */
+export interface WhatIfRequest {
+  home_out: string[];
+  away_out: string[];
+}
+
+export interface WhatIfResult {
+  match_id: number;
+  base_home_win_prob: number;
+  base_away_win_prob: number;
+  home_win_prob: number;
+  away_win_prob: number;
+  home_win_prob_delta: number;
+  lineup_margin_adj: number;
+  win_prob_source: string;
+}
+
 /** One compact prediction row from GET /predict-round. */
 export interface RoundPrediction {
   match_id: number;
@@ -74,6 +160,10 @@ export interface RoundPrediction {
   predicted_home_score: number;
   predicted_away_score: number;
   confidence: number;
+  /** Home win % shift from lineup availability vs baseline (when lineup-aware). */
+  lineup_win_prob_shift?: number | null;
+  lineup_adjusted_home_win_prob?: number | null;
+  lineup_adjusted_away_win_prob?: number | null;
 }
 
 export interface NewsArticle {
@@ -115,6 +205,7 @@ export interface MatchIntelligence {
   injuries: InjuryUpdate[];
   sentiment: Record<string, number>;
   briefing: MatchBriefing;
+  market_edge?: MarketEdge;
 }
 
 export interface RoundIntelligence {
@@ -208,5 +299,50 @@ export async function simulateWithOverrides(
     body: JSON.stringify(overrides),
   });
   if (!res.ok) throw new Error("Simulation failed");
+  return res.json();
+}
+
+export async function fetchConformalInterval(
+  matchId: number
+): Promise<ConformalInterval> {
+  const res = await fetch(`${API_BASE}/predict/${matchId}/interval`);
+  if (!res.ok) throw new Error("Failed to fetch conformal interval");
+  return res.json();
+}
+
+export async function fetchMarketEdge(matchId: number): Promise<MarketEdge> {
+  const res = await fetch(`${API_BASE}/intelligence/market/${matchId}`);
+  if (!res.ok) throw new Error("Failed to fetch market edge");
+  return res.json();
+}
+
+export async function fetchRoundMarketEdges(
+  year: number,
+  round: number
+): Promise<RoundMarketEdges> {
+  const params = new URLSearchParams({ year: String(year), round: String(round) });
+  const res = await fetch(`${API_BASE}/intelligence/market?${params}`);
+  if (!res.ok) throw new Error("Failed to fetch round market edges");
+  return res.json();
+}
+
+export async function fetchSimilarGames(
+  matchId: number
+): Promise<SimilarGamesResponse> {
+  const res = await fetch(`${API_BASE}/intelligence/similar-games/${matchId}`);
+  if (!res.ok) throw new Error("Failed to fetch similar games");
+  return res.json();
+}
+
+export async function runWhatIf(
+  matchId: number,
+  body: WhatIfRequest
+): Promise<WhatIfResult> {
+  const res = await fetch(`${API_BASE}/predict/${matchId}/whatif`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error("What-if simulation failed");
   return res.json();
 }

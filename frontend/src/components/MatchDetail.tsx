@@ -1,16 +1,24 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  fetchConformalInterval,
   fetchIntelligence,
   fetchPrediction,
+  type ConformalInterval,
   type MatchIntelligence,
   type RoundPrediction,
 } from "../api";
 import { MarginHistogram } from "../MarginHistogram";
 import { AIBrief } from "./AIBrief";
 import { InjuryPanel } from "./InjuryPanel";
+import { MarketEdge } from "./MarketEdge";
 import { NewsFeed } from "./NewsFeed";
+import { SimilarGames } from "./SimilarGames";
+import { WhatIfPanel } from "./WhatIfPanel";
+import { WinProbBar } from "./WinProbBar";
 
-type Tab = "overview" | "intel" | "players";
+type Tab = "overview" | "intel" | "players" | "whatif";
+
+const OUT_STATUSES = new Set(["out", "omitted", "sidelined"]);
 
 export function MatchDetail({
   pick,
@@ -23,18 +31,21 @@ export function MatchDetail({
     ReturnType<typeof fetchPrediction>
   > | null>(null);
   const [intel, setIntel] = useState<MatchIntelligence | null>(null);
+  const [interval, setInterval] = useState<ConformalInterval | null>(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("overview");
 
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const [pred, intelligence] = await Promise.all([
+      const [pred, intelligence, conformal] = await Promise.all([
         fetchPrediction(pick.match_id, 10000),
         fetchIntelligence(pick.match_id),
+        fetchConformalInterval(pick.match_id).catch(() => null),
       ]);
       setPrediction(pred);
       setIntel(intelligence);
+      setInterval(conformal);
     } catch (e) {
       console.error(e);
     } finally {
@@ -50,6 +61,19 @@ export function MatchDetail({
     const entries = Object.entries(prediction?.player_projections?.[side] || {});
     return entries.sort((a, b) => b[1].p50 - a[1].p50).slice(0, 10);
   };
+
+  const initialOut = useMemo(() => {
+    if (!intel) return [];
+    return intel.injuries
+      .filter((i) => OUT_STATUSES.has(i.status.toLowerCase()))
+      .map((i) => i.player)
+      .filter((name) => name && name !== "Squad");
+  }, [intel]);
+
+  const displayHomeProb =
+    pick.lineup_adjusted_home_win_prob ?? prediction?.home_win_prob ?? pick.home_win_prob;
+  const displayAwayProb =
+    pick.lineup_adjusted_away_win_prob ?? prediction?.away_win_prob ?? pick.away_win_prob;
 
   return (
     <div className="modal-backdrop" onClick={onClose}>
@@ -73,6 +97,7 @@ export function MatchDetail({
           {(
             [
               ["overview", "Overview"],
+              ["whatif", "What-if"],
               ["intel", "News & AI"],
               ["players", "Players"],
             ] as const
@@ -95,24 +120,45 @@ export function MatchDetail({
               <>
                 {intel?.briefing && <AIBrief briefing={intel.briefing} />}
 
+                {intel?.market_edge && (
+                  <MarketEdge edge={intel.market_edge} />
+                )}
+
                 <div className="section-label">
                   Model win probability{" "}
                   <span className="badge-model">Logistic + calibration</span>
+                  {interval && (
+                    <span className="badge-interval">
+                      {(interval.coverage * 100).toFixed(0)}% interval
+                    </span>
+                  )}
                 </div>
-                <div className="win-bar">
-                  <div
-                    className="win-bar-home"
-                    style={{ width: `${prediction.home_win_prob}%` }}
-                  >
-                    {prediction.home_win_prob.toFixed(1)}%
-                  </div>
-                  <div
-                    className="win-bar-away"
-                    style={{ width: `${prediction.away_win_prob}%` }}
-                  >
-                    {prediction.away_win_prob.toFixed(1)}%
-                  </div>
-                </div>
+                {pick.lineup_win_prob_shift != null &&
+                  Math.abs(pick.lineup_win_prob_shift) >= 0.05 && (
+                    <p className="section-note">
+                      Lineup availability shift:{" "}
+                      <span
+                        className={`lineup-shift-badge inline ${pick.lineup_win_prob_shift >= 0 ? "shift-up" : "shift-down"}`}
+                      >
+                        {pick.lineup_win_prob_shift >= 0 ? "+" : ""}
+                        {pick.lineup_win_prob_shift.toFixed(1)}% home
+                      </span>
+                    </p>
+                  )}
+                <WinProbBar
+                  homeProb={displayHomeProb}
+                  awayProb={displayAwayProb}
+                  interval={
+                    interval
+                      ? {
+                          lower: interval.lower,
+                          upper: interval.upper,
+                          coverage: interval.coverage,
+                        }
+                      : null
+                  }
+                  showLabels
+                />
 
                 <div className="stats-row">
                   <div className="stat-box">
@@ -135,6 +181,8 @@ export function MatchDetail({
                   </div>
                 </div>
 
+                <SimilarGames matchId={pick.match_id} />
+
                 <div className="chart-section">
                   <h3>Margin Distribution</h3>
                   <MarginHistogram
@@ -143,6 +191,16 @@ export function MatchDetail({
                   />
                 </div>
               </>
+            )}
+
+            {tab === "whatif" && prediction.player_projections && (
+              <WhatIfPanel
+                matchId={pick.match_id}
+                prediction={prediction}
+                homeTeam={pick.home_team}
+                awayTeam={pick.away_team}
+                initialOut={initialOut}
+              />
             )}
 
             {tab === "intel" && intel && (

@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  fetchConformalInterval,
   fetchRound,
   fetchRoundIntelligence,
+  fetchRoundMarketEdges,
+  type ConformalInterval,
+  type MarketEdge,
   type RoundIntelligence,
   type RoundPrediction,
 } from "./api";
@@ -15,6 +19,8 @@ export default function App() {
   const [round, setRound] = useState(16);
   const [predictions, setPredictions] = useState<RoundPrediction[]>([]);
   const [intel, setIntel] = useState<RoundIntelligence | null>(null);
+  const [marketEdges, setMarketEdges] = useState<Map<number, MarketEdge>>(new Map());
+  const [intervals, setIntervals] = useState<Map<number, ConformalInterval>>(new Map());
   const [loading, setLoading] = useState(false);
   const [intelLoading, setIntelLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -25,16 +31,41 @@ export default function App() {
     setIntelLoading(true);
     setError(null);
     try {
-      const [data, roundIntel] = await Promise.all([
+      const [data, roundIntel, roundMarket] = await Promise.all([
         fetchRound(year, round),
         fetchRoundIntelligence(year, round),
+        fetchRoundMarketEdges(year, round).catch(() => null),
       ]);
       setPredictions(data.predictions);
       setIntel(roundIntel);
+
+      if (roundMarket) {
+        setMarketEdges(new Map(roundMarket.edges.map((e) => [e.match_id, e])));
+      } else {
+        setMarketEdges(new Map());
+      }
+
+      const intervalResults = await Promise.all(
+        data.predictions.map(async (p) => {
+          try {
+            const iv = await fetchConformalInterval(p.match_id);
+            return [p.match_id, iv] as const;
+          } catch {
+            return null;
+          }
+        })
+      );
+      setIntervals(
+        new Map(
+          intervalResults.filter((x): x is [number, ConformalInterval] => x != null)
+        )
+      );
     } catch {
       setError("Could not load predictions. Is the API running?");
       setPredictions([]);
       setIntel(null);
+      setMarketEdges(new Map());
+      setIntervals(new Map());
     } finally {
       setLoading(false);
       setIntelLoading(false);
@@ -113,6 +144,8 @@ export default function App() {
                   key={p.match_id}
                   p={p}
                   injuryCount={injuryByMatch.get(p.match_id) ?? 0}
+                  interval={intervals.get(p.match_id) ?? null}
+                  marketEdge={marketEdges.get(p.match_id) ?? null}
                   onOpen={setPick}
                 />
               ))}

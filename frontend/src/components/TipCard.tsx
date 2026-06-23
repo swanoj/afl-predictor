@@ -1,4 +1,6 @@
-import type { RoundPrediction } from "../api";
+import type { ConformalInterval, MarketEdge, RoundPrediction } from "../api";
+import { MarketEdge as MarketEdgePill } from "./MarketEdge";
+import { WinProbBar } from "./WinProbBar";
 
 function actualWinner(p: RoundPrediction): string | null {
   if (!p.complete || p.home_score == null || p.away_score == null) return null;
@@ -22,10 +24,14 @@ function formatMatchDate(iso: string | null) {
 export function TipCard({
   p,
   injuryCount = 0,
+  interval,
+  marketEdge,
   onOpen,
 }: {
   p: RoundPrediction;
   injuryCount?: number;
+  interval?: ConformalInterval | null;
+  marketEdge?: MarketEdge | null;
   onOpen: (p: RoundPrediction) => void;
 }) {
   const homeFav = p.home_win_prob >= p.away_win_prob;
@@ -33,6 +39,16 @@ export function TipCard({
   const tipCorrect = winner ? winner === p.predicted_winner : null;
   const margin = p.predicted_margin;
   const when = formatMatchDate(p.date);
+
+  const lineupShift = p.lineup_win_prob_shift;
+  const showLineupBadge =
+    lineupShift != null && Math.abs(lineupShift) >= 0.05;
+  const shiftSign = (lineupShift ?? 0) >= 0 ? "+" : "";
+
+  const displayHomeProb =
+    p.lineup_adjusted_home_win_prob ?? p.home_win_prob;
+  const displayAwayProb =
+    p.lineup_adjusted_away_win_prob ?? p.away_win_prob;
 
   return (
     <button className="tip-card" onClick={() => onOpen(p)}>
@@ -42,9 +58,19 @@ export function TipCard({
           {p.venue && <span className="tip-venue">{p.venue}</span>}
         </div>
         <div className="tip-meta-right">
+          {showLineupBadge && (
+            <span
+              className={`lineup-shift-badge ${lineupShift! >= 0 ? "shift-up" : "shift-down"}`}
+              title="Win % shift from lineup availability vs baseline"
+            >
+              {shiftSign}
+              {lineupShift!.toFixed(1)}% lineup
+            </span>
+          )}
           {injuryCount > 0 && (
             <span className="injury-pill">{injuryCount} injury</span>
           )}
+          <MarketEdgePill edge={marketEdge} compact />
           <span className="conf-pill">{p.confidence.toFixed(0)}% conf</span>
           {p.complete && tipCorrect != null && (
             <span className={tipCorrect ? "tip-check ok" : "tip-check bad"}>
@@ -57,12 +83,16 @@ export function TipCard({
       <div className="tip-teams">
         <div className={`tip-team ${homeFav ? "fav" : ""}`}>
           <span className="tip-team-name">{p.home_team}</span>
-          <span className="tip-team-prob">{p.home_win_prob.toFixed(0)}%</span>
+          <span className="tip-team-prob">
+            {interval
+              ? `${interval.lower.toFixed(0)}–${interval.upper.toFixed(0)}%`
+              : `${displayHomeProb.toFixed(0)}%`}
+          </span>
         </div>
         <div className="tip-vs">vs</div>
         <div className={`tip-team ${!homeFav ? "fav" : ""}`}>
           <span className="tip-team-name">{p.away_team}</span>
-          <span className="tip-team-prob">{p.away_win_prob.toFixed(0)}%</span>
+          <span className="tip-team-prob">{displayAwayProb.toFixed(0)}%</span>
         </div>
       </div>
 
@@ -70,10 +100,12 @@ export function TipCard({
         Tip: <strong>{p.predicted_winner}</strong> by {Math.abs(margin).toFixed(0)}
       </div>
 
-      <div className="win-bar">
-        <div className="win-bar-home" style={{ width: `${p.home_win_prob}%` }} />
-        <div className="win-bar-away" style={{ width: `${p.away_win_prob}%` }} />
-      </div>
+      <WinProbBar
+        homeProb={displayHomeProb}
+        awayProb={displayAwayProb}
+        interval={interval ? { lower: interval.lower, upper: interval.upper, coverage: interval.coverage } : null}
+        compact
+      />
 
       <div className="tip-scores">
         <span>

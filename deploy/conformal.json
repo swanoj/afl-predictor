@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "model_version": "calibrated:logistic:sigmoid",
+  "coverage": 0.9,
+  "quantile_level": 0.95,
+  "residual_quantile": 0.7288023046963601,
+  "n_calibration": 1224,
+  "seasons": [
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "by_year": {
+    "2020": {
+      "residual_quantile": 0.6444836970353258,
+      "n": 162
+    },
+    "2021": {
+      "residual_quantile": 0.8037699358677857,
+      "n": 207
+    },
+    "2022": {
+      "residual_quantile": 0.6912635290632689,
+      "n": 207
+    },
+    "2023": {
+      "residual_quantile": 0.8395657588956734,
+      "n": 216
+    },
+    "2024": {
+      "residual_quantile": 0.7090098404604217,
+      "n": 216
+    },
+    "2025": {
+      "residual_quantile": 0.6973675741847201,
+      "n": 216
+    }
+  },
+  "built_at": "2026-06-23T19:49:11.406478+00:00"
+}

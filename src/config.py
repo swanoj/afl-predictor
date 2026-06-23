@@ -21,6 +21,9 @@ SQUIGGLE_USER_AGENT = os.getenv(
 # Optional OpenAI key for AI match briefings (falls back to rule-based if unset).
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+
+# Optional The Odds API key for live bookmaker prices (falls back to Squiggle / mock).
+ODDS_API_KEY = os.getenv("ODDS_API_KEY", "")
 SQUIGGLE_BASE_URL = "https://api.squiggle.com.au/"
 
 # Elo defaults

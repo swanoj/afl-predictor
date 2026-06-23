@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 
 from src.db.models import Match, StoredPrediction
 from src.intelligence.briefing import generate_ai_briefing
+from src.intelligence.market import get_market_edge
 from src.intelligence.news import (
     NewsArticle,
     extract_injuries,
@@ -84,6 +85,7 @@ def get_match_intelligence(
             match.away_team: sentiments.get(match.away_team, 0.0),
         },
         "briefing": briefing,
+        "market_edge": get_market_edge(session, match, stored=stored),
         "feed_refreshed_at": _feed_cache["fetched_at"],
     }
 
